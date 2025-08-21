@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Github,
-  Twitter,
   Linkedin,
   Instagram,
   Youtube,
@@ -10,12 +9,14 @@ import {
   MapPin,
   Code,
 } from "lucide-react";
+import { FaXTwitter } from "react-icons/fa6";
+
 
 const Contact = () => {
   const socialLinks = [
     { name: "GitHub", url: "https://github.com/imRahul05", icon: Github },
     { name: "LinkedIn", url: "https://linkedin.com/in/imrahul05", icon: Linkedin },
-    { name: "Twitter", url: "https://twitter.com/imrahul165", icon: Twitter },
+    { name: "Twitter", url: "https://x.com/imrahul165", icon: FaXTwitter },
     { name: "Instagram", url: "https://instagram.com/imrahul2516", icon: Instagram },
     { name: "YouTube", url: "https://www.youtube.com/c/mangaamaze", icon: Youtube },
   ];
@@ -86,7 +87,7 @@ const Contact = () => {
             </div>
 
             {/* Professional Icons */}
-            <div className="mt-6">
+            {/* <div className="mt-6">
               <h4 className="text-lg font-semibold mb-3">Professional</h4>
               <div className="flex gap-4 flex-wrap">
                 {professionalLinks.map((link) => {
@@ -105,7 +106,7 @@ const Contact = () => {
                   );
                 })}
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Contact Form */}

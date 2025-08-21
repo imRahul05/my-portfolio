@@ -21,7 +21,7 @@ const Projects = () => {
       technologies: ["MERN"],
       github: "https://github.com/imRahul05/mansarovar_public_school",
       url: "https://mansarovar-public-school-green.vercel.app/",
-      stars: 2,
+      // stars: 2,
       image: mnsImg,
       category: "Education"
     },
