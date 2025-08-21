@@ -16,7 +16,7 @@ import mnsImg from '../assets/Projects/mns.png';
 const Projects = () => {
   const projects = [
     {
-      name: "Mansarovar Public School Management System",
+      name: "School Management System",
       description: "A comprehensive school management system and website designed to serve various stakeholders including students, parents, teachers, and administrators. The application includes both public-facing pages and authenticated portals for different user types.",
       technologies: ["MERN"],
       github: "https://github.com/imRahul05/mansarovar_public_school",
