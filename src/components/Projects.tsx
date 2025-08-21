@@ -18,7 +18,7 @@ const Projects = () => {
     {
       name: "Mansarovar Public School Management System",
       description: "A comprehensive school management system and website designed to serve various stakeholders including students, parents, teachers, and administrators. The application includes both public-facing pages and authenticated portals for different user types.",
-      technologies: ["MERN", "React", "Node.js", "Express", "MongoDB"],
+      technologies: ["MERN"],
       github: "https://github.com/imRahul05/mansarovar_public_school",
       url: "https://mansarovar-public-school-green.vercel.app/",
       stars: 2,
@@ -38,7 +38,7 @@ const Projects = () => {
     {
       name: "PillPal AI",
       description: "PillPal helps you manage medications, track doses, and stay on top of refills with smart reminders and a simple tracking system.",
-      technologies: ["React", "Web", "JSX"],
+      technologies: ["React", "Web", "JS","FireBase"],
       github: "https://github.com/imRahul05/PillPal",
       url: "https://pill-pal-ai.vercel.app/",
       // stars: 2,
@@ -48,7 +48,7 @@ const Projects = () => {
     {
       name: "CRMS - Candidate Referral System",
       description: "A comprehensive web application for managing employee referrals. Employees can submit and track referrals while admins manage the hiring pipeline.",
-      technologies: ["React", "Vite", "Tailwind", "JWT", "Node.js", "Express", "MongoDB"],
+      technologies: ["MERN", "Tailwind", "JWT"],
       github: "https://github.com/imRahul05/crms-MERN",
       url: "https://crms-frontend-theta.vercel.app",
       // stars: 1,
@@ -58,7 +58,7 @@ const Projects = () => {
     {
       name: "OMS - Order Management System",
       description: "A web app for managing orders with role-based authentication. Users can place orders, staff/admins can manage them via dashboards.",
-      technologies: ["React", "Vite", "Tailwind", "JWT", "Node.js", "Express", "MongoDB"],
+      technologies: ["MERN", "Vite", "Tailwind", "JWT"],
       github: "https://github.com/imRahul05/Order_management_system",
       url: "https://order-management-system-inky-alpha.vercel.app/",
       // stars: 1,
@@ -77,7 +77,7 @@ const Projects = () => {
     {
       name: "Bloogyy",
       description: "Blog site using React, Node.js, Express, MongoDB, and Firebase for real-time updates and authentication. Includes commenting and upvoting.",
-      technologies: ["React", "Node.js", "MongoDB", "Firebase"],
+      technologies: ["MERN", "Firebase"],
       github: "https://github.com/imRahul05/blog_frontend",
       url: "https://bloogyy.vercel.app/",
       image: bloggyImg,
