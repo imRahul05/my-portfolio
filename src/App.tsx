@@ -7,6 +7,9 @@ import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Education from './components/Education';
 import Contact from './components/Contact';
+import GitHubContributions from './components/GitHubCalendar';
+
+import ChatbotWidget from './components/ChatbotWidget';
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -33,15 +36,19 @@ function App() {
   }, []);
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div>
       <Header activeSection={activeSection} />
       <Hero />
       <About />
       <Skills />
+      <GitHubContributions />
       <Experience />
       <Projects />
       <Education />
       <Contact />
+
+      {/* 👇 Chatbot always fixed bottom-right */}
+      <ChatbotWidget />
     </div>
   );
 }

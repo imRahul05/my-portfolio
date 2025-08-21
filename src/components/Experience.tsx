@@ -21,15 +21,15 @@ const Experience = () => {
     <section id="experience" className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          {/* <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
             Work Experience
           </h2>
           <p className="text-lg text-gray-600">
             My professional journey and contributions to various projects
-          </p>
+          </p> */}
         </div>
 
-        <div className="space-y-8">
+        {/* <div className="space-y-8">
           {experiences.map((exp, index) => (
             <div key={index} className="flex items-start gap-6 p-6 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200">
               <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -48,7 +48,7 @@ const Experience = () => {
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
 
         <div className="mt-12 p-6 bg-gradient-to-r from-blue-500 to-teal-500 rounded-lg text-white text-center">
           <h3 className="text-xl font-semibold mb-2">🏆 Major Achievement</h3>
