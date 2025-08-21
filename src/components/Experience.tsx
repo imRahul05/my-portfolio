@@ -1,19 +1,18 @@
-import React from 'react';
-import { Briefcase, Users } from 'lucide-react';
+import { useState } from 'react';
+import { X } from 'lucide-react';
+import sihCertificate from '../assets/certificates/SIH_CERRIFICATE.png';
 
 const Experience = () => {
-  const experiences = [
+  const [selectedCertificate, setSelectedCertificate] = useState<string | null>(null);
+  
+  const certificates = [
     {
-      role: 'Software Developer / Intern',
-      company: 'Coding Raja Technologies',
-      description: 'Developed apps that worked smoothly and benefited users. Involved in building web applications.',
-      icon: <Briefcase className="text-white" size={24} />
-    },
-    {
-      role: 'Freelancer',
-      company: 'Independent',
-      description: 'Worked on various projects as a freelancer.',
-      icon: <Users className="text-white" size={24} />
+      id: 'sih-2023',
+      title: 'Smart India Hackathon 2023',
+      issuer: 'AICTE',
+      date: 'December 2023',
+      image: sihCertificate,
+      description: 'National level hackathon winner certificate for innovative solution to community problems.'
     }
   ];
 
@@ -21,37 +20,31 @@ const Experience = () => {
     <section id="experience" className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          {/* <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Work Experience
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+            Achievements & Certificates
           </h2>
           <p className="text-lg text-gray-600">
-            My professional journey and contributions to various projects
-          </p> */}
+            Recognition of my skills and accomplishments
+          </p>
         </div>
 
-        {/* <div className="space-y-8">
-          {experiences.map((exp, index) => (
-            <div key={index} className="flex items-start gap-6 p-6 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200">
-              <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                {exp.icon}
-              </div>
-              <div className="flex-1">
-                <h3 className="text-xl font-semibold text-gray-900 mb-1">
-                  {exp.role}
-                </h3>
-                <p className="text-blue-600 font-medium mb-3">
-                  {exp.company}
-                </p>
-                <p className="text-gray-600">
-                  {exp.description}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div> */}
+        {/* SIH Certificate Image */}
+        <div className="mb-10 flex justify-center">
+          <div className="max-w-2xl w-full bg-white rounded-lg shadow-md overflow-hidden cursor-pointer" onClick={() => setSelectedCertificate(certificates[0].image)}>
+            <img 
+              src={certificates[0].image} 
+              alt="Smart India Hackathon 2023 Certificate" 
+              className="w-full h-auto hover:scale-[1.02] transition-transform duration-300"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.src = 'https://via.placeholder.com/800x600?text=SIH+Certificate';
+              }}
+            />
+          </div>
+        </div>
 
-        <div className="mt-12 p-6 bg-gradient-to-r from-blue-500 to-teal-500 rounded-lg text-white text-center">
-          <h3 className="text-xl font-semibold mb-2">🏆 Major Achievement</h3>
+        <div className="p-6 bg-gradient-to-r from-blue-500 to-teal-500 rounded-lg text-white text-center mb-16">
+          <h3 className="text-xl font-semibold mb-2">🏆 Achievement</h3>
           <p className="text-lg">
             <strong>Smart India Hackathon (SIH) 2023 Winner</strong>
           </p>
@@ -59,6 +52,28 @@ const Experience = () => {
             Recognized for innovative problem-solving and technical excellence at the national level
           </p>
         </div>
+        
+        {/* Certificate Modal */}
+        {selectedCertificate && (
+          <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4">
+            <div className="relative max-w-4xl w-full">
+              <button 
+                onClick={() => setSelectedCertificate(null)}
+                className="absolute -top-12 right-0 text-white hover:text-gray-300 p-2"
+                title="Close certificate view"
+                aria-label="Close certificate view"
+              >
+                <X size={24} />
+                <span className="sr-only">Close</span>
+              </button>
+              <img 
+                src={selectedCertificate} 
+                alt="Certificate" 
+                className="w-full h-auto rounded-lg"
+              />
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
