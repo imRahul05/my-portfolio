@@ -10,6 +10,7 @@ import {
   Code,
 } from "lucide-react";
 import { FaXTwitter } from "react-icons/fa6";
+import spectralBg from "../assets/Spectral.jpg";
 
 
 const Contact = () => {
@@ -30,7 +31,16 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-16 bg-gray-900 text-white">
+    <section 
+  id="contact" 
+  className="py-16 text-white relative rounded-tl-[10rem] rounded-tr-[10rem] overflow-hidden"
+  style={{
+    backgroundImage: `url(${spectralBg})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  }}
+>
+
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold">Let’s Connect</h2>
@@ -41,7 +51,7 @@ const Contact = () => {
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Info + Social */}
-          <div>
+          <div className="bg-gray-900/70 p-6 rounded-lg backdrop-blur-sm border border-gray-800">
             <h3 className="text-xl font-semibold mb-4">Contact Info</h3>
             <div className="space-y-4">
               <div className="flex items-center gap-3">
@@ -110,7 +120,7 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <div>
+          <div className="bg-gray-900/70 p-6 rounded-lg backdrop-blur-sm border border-gray-800">
             <h3 className="text-xl font-semibold mb-4">Send Me a Message</h3>
             <form
               action="https://formspree.io/f/xanbggor"
@@ -148,8 +158,8 @@ const Contact = () => {
           </div>
         </div>
 
-        <div className="mt-12 pt-6 border-t border-gray-800 text-center text-sm text-gray-500">
-          © 2024 Rahul Kumar. Built with React, TypeScript & Tailwind CSS.
+        <div className="mt-12 pt-6 border-t border-gray-800 text-center text-sm text-white">
+          © {new Date().getFullYear()} Rahul Kumar. Built with React, TypeScript & Tailwind CSS.
         </div>
       </div>
     </section>
