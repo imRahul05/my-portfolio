@@ -2,7 +2,7 @@ import React from 'react';
 import { MapPin, Mail, Download, ExternalLink, Github, Linkedin } from 'lucide-react';
 import { FaXTwitter } from "react-icons/fa6";
 import img from '../assets/img.png';
- import resumePdf from '../assets/resume/Rahul_CV.pdf'; // place your PDF inside src/assets
+ import resumePdf from '../assets/resume/rahul_dev.pdf'; // place your PDF inside src/assets
 
 const Hero = () => {
   // Function to handle resume download + open in new tab
