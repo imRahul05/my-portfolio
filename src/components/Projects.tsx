@@ -15,16 +15,16 @@ import mnsImg from '../assets/Projects/mns.png';
 
 const Projects = () => {
   const projects = [
-    {
-      name: "School Management System",
-      description: "A comprehensive school management system and website designed to serve various stakeholders including students, parents, teachers, and administrators. The application includes both public-facing pages and authenticated portals for different user types.",
-      technologies: ["MERN"],
-      github: "https://github.com/imRahul05/mansarovar_public_school",
-      url: "https://mansarovar-public-school-green.vercel.app/",
-      // stars: 2,
-      image: mnsImg,
-      category: "Education"
-    },
+    // {
+    //   name: "School Management System",
+    //   description: "A comprehensive school management system and website designed to serve various stakeholders including students, parents, teachers, and administrators. The application includes both public-facing pages and authenticated portals for different user types.",
+    //   technologies: ["MERN"],
+    //   github: "https://github.com/imRahul05/mansarovar_public_school",
+    //   url: "https://mansarovar-public-school-green.vercel.app/",
+    //   // stars: 2,
+    //   image: mnsImg,
+    //   category: "Education"
+    // },
     {
       name: "FinSage AI",
       description: "A better way to manage your finances. Take control of your financial journey with our comprehensive suite of tools.",
