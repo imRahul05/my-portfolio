@@ -7,7 +7,7 @@ const Hero = () => {
   // Function to handle resume download + open in new tab
   const handleResumeDownload = () => {
     //Create a hidden link element
-    const resumeUrl = "/Rahul_CV.pdf";
+    const resumeUrl = "/Rahul_Kumar_Resume";
     const downloadLink = document.createElement("a");
     downloadLink.href = resumeUrl;
     downloadLink.download = "Rahul_Kumar_Resume.pdf"; // file name
