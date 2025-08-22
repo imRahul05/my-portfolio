@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { X } from 'lucide-react';
 import sihCertificate from '../assets/certificates/SIH_CERRIFICATE.png';
+import { BackgroundPaths } from './ui/background-paths';
+import './experience.css';
 
 const Experience = () => {
   const [selectedCertificate, setSelectedCertificate] = useState<string | null>(null);
@@ -17,8 +19,11 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-16 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="experience" className="py-16 bg-white relative">
+      <div className="absolute inset-0 overflow-hidden">
+        <BackgroundPaths />
+      </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
             Achievements & Certificates
@@ -30,7 +35,7 @@ const Experience = () => {
 
         {/* SIH Certificate Image */}
         <div className="mb-10 flex justify-center">
-          <div className="max-w-2xl w-full bg-white rounded-lg shadow-md overflow-hidden cursor-pointer" onClick={() => setSelectedCertificate(certificates[0].image)}>
+          <div className="max-w-2xl w-full certificate-card rounded-lg shadow-md overflow-hidden cursor-pointer" onClick={() => setSelectedCertificate(certificates[0].image)}>
             <img 
               src={certificates[0].image} 
               alt="Smart India Hackathon 2023 Certificate" 
@@ -43,19 +48,19 @@ const Experience = () => {
           </div>
         </div>
 
-        <div className="p-6 bg-gradient-to-r from-blue-500 to-teal-500 rounded-lg text-white text-center mb-16">
-          <h3 className="text-xl font-semibold mb-2">🏆 Achievement</h3>
-          <p className="text-lg">
+        <div className="p-6 certificate-card from-blue-500 to-teal-500 rounded-lg text-center mb-16 ">
+          <h3 className="text-xl font-semibold mb-2 text-blue-600">🏆 Achievement</h3>
+          <p className="text-lg text-gray-800">
             <strong>Smart India Hackathon (SIH) 2023 Winner</strong>
           </p>
-          <p className="mt-2 opacity-90">
+          <p className="mt-2 text-gray-700">
             Recognized for innovative problem-solving and technical excellence at the national level
           </p>
         </div>
         
         {/* Certificate Modal */}
         {selectedCertificate && (
-          <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4">
+          <div className="fixed inset-0 certificate-modal flex items-center justify-center z-50 p-4">
             <div className="relative max-w-4xl w-full">
               <button 
                 onClick={() => setSelectedCertificate(null)}
@@ -69,7 +74,7 @@ const Experience = () => {
               <img 
                 src={selectedCertificate} 
                 alt="Certificate" 
-                className="w-full h-auto rounded-lg"
+                className="w-full h-auto rounded-lg shadow-2xl"
               />
             </div>
           </div>

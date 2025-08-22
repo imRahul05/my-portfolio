@@ -1,21 +1,27 @@
 import React from 'react';
 import { Award, Target, Code } from 'lucide-react';
+import { HandWrittenTitle } from './ui/hand-writing-text';
+import './about.css';
 
 const About = () => {
   return (
-    <section id="about" className="py-16 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Heading */}
+    <section id="about" className="pt-8 pb-16 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 about-content">
+        {/* Heading with Hand Written Title */}
+        <div className="about-handwritten-title">
+          <HandWrittenTitle 
+            title="About Me" 
+            subtitle="My journey and aspirations"
+          />
+        </div>
+        
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            About Me
-          </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            I’m an <span className="font-semibold text-gray-900">aspiring Software Developer</span> with a strong
+            I'm an <span className="font-semibold text-gray-900">aspiring Software Developer</span> with a strong
             foundation in <span className="text-blue-600 font-medium">full-stack web development</span>.  
             I completed my MCA at <span className="font-medium text-gray-900">Visvesvaraya Technological University (VTU)</span>,
             and was proud to be a <span className="font-semibold text-teal-600">Smart India Hackathon 2023 Winner</span>.  
-            Currently, I’m working on a <span className="font-medium text-gray-900">School LMS</span> project while 
+            Currently, I'm working on a <span className="font-medium text-gray-900">School LMS</span> project while 
             sharpening my skills in <span className="font-medium text-gray-900">AI, React.js, Node.js, Express.js, and MongoDB</span>.  
             My career goal is to contribute as a fresher in a dynamic team where I can grow and build impactful applications.
           </p>
@@ -23,7 +29,7 @@ const About = () => {
 
         {/* Highlights */}
         <div className="grid md:grid-cols-3 gap-8">
-          <div className="text-center p-6 rounded-2xl shadow-sm bg-gradient-to-b from-blue-50 to-white hover:shadow-md transition-all duration-300">
+          <div className="text-center p-6 rounded-2xl shadow-sm bg-gradient-to-b from-blue-50 to-white hover:shadow-md transition-all duration-300 highlight-card">
             <div className="w-16 h-16 mx-auto mb-4 bg-blue-600 rounded-xl flex items-center justify-center shadow-md">
               <Code className="text-white" size={32} />
             </div>
@@ -34,7 +40,7 @@ const About = () => {
             </p>
           </div>
 
-          <div className="text-center p-6 rounded-2xl shadow-sm bg-gradient-to-b from-teal-50 to-white hover:shadow-md transition-all duration-300">
+          <div className="text-center p-6 rounded-2xl shadow-sm bg-gradient-to-b from-teal-50 to-white hover:shadow-md transition-all duration-300 highlight-card">
             <div className="w-16 h-16 mx-auto mb-4 bg-teal-600 rounded-xl flex items-center justify-center shadow-md">
               <Award className="text-white" size={32} />
             </div>
@@ -45,7 +51,7 @@ const About = () => {
             </p>
           </div>
 
-          <div className="text-center p-6 rounded-2xl shadow-sm bg-gradient-to-b from-orange-50 to-white hover:shadow-md transition-all duration-300">
+          <div className="text-center p-6 rounded-2xl shadow-sm bg-gradient-to-b from-orange-50 to-white hover:shadow-md transition-all duration-300 highlight-card">
             <div className="w-16 h-16 mx-auto mb-4 bg-orange-600 rounded-xl flex items-center justify-center shadow-md">
               <Target className="text-white" size={32} />
             </div>

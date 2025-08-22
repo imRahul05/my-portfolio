@@ -1,0 +1,25 @@
+/* About section specific styles */
+.about-handwritten-title {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem !important;
+}
+
+/* Style the path with blue color matching the theme */
+.about-handwritten-title svg path {
+  /* stroke: #3B82F6 !important; Blue color matching your theme */
+  stroke-width: 10px !important;
+}
+
+/* Adjust spacing for better layout */
+.about-content {
+  padding-top: 0;
+}
+
+/* Add subtle animation to highlight cards on hover */
+.highlight-card {
+  transition: all 0.3s ease;
+}
+
+.highlight-card:hover {
+  transform: translateY(-5px);
+}

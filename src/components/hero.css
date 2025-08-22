@@ -1,0 +1,34 @@
+/* Hero-specific retro grid styles */
+.hero-retro-grid {
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Ensure text contrast is good against the grid */
+.hero-content {
+  position: relative;
+  z-index: 10;
+}
+
+/* Add a subtle text shadow for better readability */
+.hero-heading {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhance hover effects on the hero buttons */
+.hero-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Animated underline text styling */
+.animated-underline {
+  filter: drop-shadow(0 0 2px rgba(249, 115, 22, 0.3));
+}
+
+/* Enhance the underline animation on hover */
+.animated-underline:hover svg path {
+  stroke-width: 3px;
+  filter: drop-shadow(0 0 3px rgba(249, 115, 22, 0.5));
+}

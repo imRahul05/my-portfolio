@@ -2,6 +2,9 @@ import React from 'react';
 import { MapPin, Mail, Download, ExternalLink, Github, Linkedin } from 'lucide-react';
 import { FaXTwitter } from "react-icons/fa6";
 import img from '../assets/img.png';
+import { RetroGrid } from './ui/retro-grid';
+import { AnimatedText } from './ui/animated-underline-text-one';
+import './hero.css';
  
 const Hero = () => {
   // Function to handle resume download + open in new tab
@@ -28,18 +31,29 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen pt-20 px-4 sm:px-6 lg:px-8 flex items-center">
-      <div className="max-w-7xl mx-auto w-full px-16">
+    <section id="home" className="min-h-screen pt-20 px-4 sm:px-6 lg:px-8 flex items-center relative">
+      {/* RetroGrid Background */}
+      <RetroGrid className="opacity-30 dark:opacity-40 hero-retro-grid" angle={55} />
+      
+      <div className="max-w-7xl mx-auto w-full px-16 relative z-10 hero-content">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Side */}
           <div className="space-y-8">
             <div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 hero-heading">
                 Rahul Kumar
               </h1>
-              <p className="text-xl sm:text-2xl text-gray-600 mb-6">
-                Aspiring Software Developer
-              </p>
+              <div className="mb-10 mt-2">
+                <AnimatedText 
+                  text="Aspiring Software Developer" 
+                  textClassName="text-xl sm:text-2xl text-gray-600 hero-heading"
+                  underlineClassName="text-orange-500 animated-underline"
+                  underlinePath="M 0,10 Q 85,0 170,10 Q 255,20 340,10"
+                  underlineHoverPath="M 0,10 Q 85,20 170,10 Q 255,0 340,10"
+                  underlineDuration={1.8}
+                  className="animated-underline !items-start"
+                />
+              </div>
               <div className="space-y-4 text-gray-600">
                 <div className="flex items-center gap-3">
                   <MapPin size={20} />
@@ -59,6 +73,8 @@ const Hero = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-gray-800 hover:bg-gray-900 rounded-full flex items-center justify-center text-white transition-all duration-200"
+                title="GitHub Profile"
+                aria-label="Visit Rahul's GitHub Profile"
               >
                 <Github size={20} />
               </a>
@@ -67,6 +83,8 @@ const Hero = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center text-white transition-all duration-200"
+                title="LinkedIn Profile"
+                aria-label="Visit Rahul's LinkedIn Profile"
               >
                 <Linkedin size={20} />
               </a>
@@ -75,6 +93,8 @@ const Hero = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-sky-400 hover:bg-sky-500 rounded-full flex items-center justify-center text-white transition-all duration-200"
+                title="Twitter Profile"
+                aria-label="Visit Rahul's Twitter Profile"
               >
                 <FaXTwitter size={20} />
               </a>
@@ -84,14 +104,14 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={handleResumeDownload}
-                className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium"
+                className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all duration-200 font-medium hero-button"
               >
                 <Download size={20} />
                 Download Resume
               </button>
               <button
                 onClick={handleHireMe}
-                className="inline-flex items-center gap-2 border-2 border-blue-600 text-blue-600 px-6 py-3 rounded-lg hover:bg-blue-600 hover:text-white transition-colors duration-200 font-medium"
+                className="inline-flex items-center gap-2 border-2 border-blue-600 text-blue-600 px-6 py-3 rounded-lg hover:bg-blue-600 hover:text-white transition-all duration-200 font-medium hero-button"
               >
                 <ExternalLink size={20} />
                 Hire ME

@@ -1,0 +1,36 @@
+/* Override styles for BackgroundPaths in Experience section */
+#experience .absolute.inset-0 > div {
+  min-height: 0 !important;
+  height: 100% !important;
+}
+
+/* Hide the button in BackgroundPaths */
+#experience .relative.z-10.container .inline-block.group {
+  display: none;
+}
+
+/* Hide the heading text in BackgroundPaths */
+#experience .relative.z-10.container h1 {
+  display: none;
+}
+
+/* Make the certificate cards stand out from the background */
+.certificate-card {
+  /* background-color: rgba(255, 255, 255, 0.85) !important; */
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.certificate-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal backdrop with blur effect */
+.certificate-modal {
+  background-color: rgba(0, 0, 0, 0.7);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}

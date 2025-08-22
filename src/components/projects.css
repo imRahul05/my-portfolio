@@ -1,0 +1,47 @@
+/* Projects section styles */
+.project-card {
+  background-color: rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Enhance category badges */
+.category-badge {
+  background-color: rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Tech stack badges */
+.tech-badge {
+  transition: all 0.2s ease;
+}
+
+.tech-badge:hover {
+  transform: scale(1.05);
+}
+
+/* Section heading styles */
+.projects-heading {
+  position: relative;
+  display: inline-block;
+}
+
+.projects-heading::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #10b981);
+  border-radius: 2px;
+}

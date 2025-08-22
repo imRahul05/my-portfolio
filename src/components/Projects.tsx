@@ -1,5 +1,7 @@
 import React from 'react';
 import { Github, ExternalLink, Star, Code } from 'lucide-react';
+import { FlickeringGrid } from './ui/flickering-grid';
+import './projects.css';
 
 // Import project images
 import FinSageImg from '../assets/Projects/FinSage.png';
@@ -9,9 +11,10 @@ import omsImg from '../assets/Projects/oms.png';
 import FriendLoopImg from '../assets/Projects/FriendLoop.png';
 import bloggyImg from '../assets/Projects/bloggy.png';
 import communityGifImg from '../assets/Projects/community.gif';
-import movieStreamImg from '../assets/Projects/movie-stream.png';
-import donationImg from '../assets/Projects/donation.png';
-import mnsImg from '../assets/Projects/mns.png';
+// Commented out unused imports
+// import movieStreamImg from '../assets/Projects/movie-stream.png';
+// import donationImg from '../assets/Projects/donation.png';
+// import mnsImg from '../assets/Projects/mns.png';
 
 const Projects = () => {
   const projects = [
@@ -104,10 +107,20 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-16 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="projects" className="py-16 relative">
+      <div className="absolute inset-0 z-0">
+        <FlickeringGrid 
+          squareSize={5}
+          gridGap={8}
+          flickerChance={0.15}
+          color="rgb(59, 130, 246)"
+          maxOpacity={0.1}
+          className="w-full h-full"
+        />
+      </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="projects-heading text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
             Featured Projects
           </h2>
           <p className="text-lg text-gray-600">
@@ -119,7 +132,7 @@ const Projects = () => {
           {projects.map((project, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group"
+              className="project-card rounded-xl shadow-sm overflow-hidden group"
             >
               <div className="relative overflow-hidden">
                 <img
@@ -128,18 +141,18 @@ const Projects = () => {
                   className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute top-4 right-4">
-                  <span className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium text-gray-700">
+                  <span className="category-badge px-3 py-1 rounded-full text-xs font-medium text-gray-700">
                     {project.category}
                   </span>
                 </div>
-                {project.stars && (
+                {/* {project.stars && (
                   <div className="absolute top-4 left-4 flex items-center gap-1 bg-yellow-500/90 backdrop-blur-sm px-2 py-1 rounded-full">
                     <Star size={12} fill="white" className="text-white" />
                     <span className="text-xs text-white font-medium">
                       {project.stars}
                     </span>
                   </div>
-                )}
+                )} */}
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-200">
@@ -153,7 +166,7 @@ const Projects = () => {
                     {project.technologies.map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className="bg-gradient-to-r from-blue-50 to-teal-50 text-blue-700 px-3 py-1 rounded-full text-xs font-medium border border-blue-200"
+                        className="tech-badge bg-gradient-to-r from-blue-50 to-teal-50 text-blue-700 px-3 py-1 rounded-full text-xs font-medium border border-blue-200"
                       >
                         {tech}
                       </span>
