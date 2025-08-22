@@ -78,7 +78,7 @@ const Projects = () => {
       name: "Bloogyy",
       description: "Blog site using React, Node.js, Express, MongoDB, and Firebase for real-time updates and authentication. Includes commenting and upvoting.",
       technologies: ["MERN", "Firebase"],
-      github: "https://github.com/imRahul05/blog_frontend",
+      github: "https://github.com/imRahul05/Blog_frontend",
       url: "https://bloogyy.vercel.app/",
       image: bloggyImg,
       category: "Blog Platform"
