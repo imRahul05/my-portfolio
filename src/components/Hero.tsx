@@ -2,21 +2,21 @@ import React from 'react';
 import { MapPin, Mail, Download, ExternalLink, Github, Linkedin } from 'lucide-react';
 import { FaXTwitter } from "react-icons/fa6";
 import img from '../assets/img.png';
- import resumePdf from '../assets/resume/rahul_dev.pdf'; // place your PDF inside src/assets
-
+ 
 const Hero = () => {
   // Function to handle resume download + open in new tab
   const handleResumeDownload = () => {
     //Create a hidden link element
+    const resumeUrl = "/Rahul_CV.pdf";
     const downloadLink = document.createElement("a");
-    downloadLink.href = resumePdf;
+    downloadLink.href = resumeUrl;
     downloadLink.download = "Rahul_Kumar_Resume.pdf"; // file name
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
 
     // Open resume in new tab
-    window.open(resumePdf, "_blank");
+    window.open(resumeUrl, "_blank");
   };
 
   // Function to handle hire me -> Gmail compose
