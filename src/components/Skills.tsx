@@ -116,7 +116,7 @@ const Skills = () => {
         <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-blue-50 to-transparent pointer-events-none z-10"></div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes scroll-right {
           0% {
             transform: translateX(-50%);

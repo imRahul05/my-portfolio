@@ -61,7 +61,7 @@ const MatrixLoader = () => {
         </div>
       ))}
 
-      <style jsx>{`
+      <style>{`
         .matrix-container {
           position: relative;
           width: 100vw;

@@ -92,7 +92,6 @@ function App() {
       <Education />
       <Contact />
 
-      {/* 👇 Chatbot always fixed bottom-right */}
       <ChatbotWidget />
     </div>
   );
