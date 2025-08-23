@@ -38,3 +38,10 @@ body.loading {
 .section-loader {
   animation: pulse 1.5s infinite;
 }
+
+.chatbot-widget {
+  position: fixed;
+  bottom: 20px;   /* adjust spacing from bottom */
+  right: 20px;    /* adjust spacing from right */
+  z-index: 1000;  /* ensure it floats above other content */
+}

@@ -142,8 +142,14 @@ function App() {
         fallback={<SectionLoader message="Loading Contact..." />}
       />
 
-      <LazySection id="chatbot" importFn={() => import("./components/ChatbotWidget")} />
-    </div>
+<div className="chatbot-widget">
+  <LazySection 
+    id='chatbot'
+    importFn={() => import("./components/ChatbotWidget")} 
+    fallback={<SectionLoader message="Loading Chatbot..." />} 
+  />
+</div> 
+   </div>
   );
 }
 
