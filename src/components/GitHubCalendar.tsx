@@ -5,19 +5,22 @@ const GitHubContributions: React.FC = () => {
     // Custom theme colors for GitHub Calendar
     const colorTheme = {
         light: [
-            '#808080', // level 0 (no contributions) → subtle gray (visible on white)
-            '#bbf7d0', // level 1 (Tailwind green-200)
-            '#86efac', // level 2 (green-300)
-            '#4ade80', // level 3 (green-400)
-            '#22c55e', // level 4 (green-500)
+            '#808080',
+            '#e9d5ff', // purple-200
+            '#d8b4fe', // purple-300
+            '#c084fc', // purple-400
+            '#a855f7', // purple-500
         ],
-        dark: [
-            '#808080', // level 0 (dark gray for no contributions in dark mode)
-            '#0e4429',
-            '#006d32',
-            '#26a641',
-            '#39d353',
-        ],
+
+
+       dark: [
+   '#808080',
+  '#fde68a', // amber-200
+  '#fcd34d', // amber-300
+  '#fbbf24', // amber-400
+  '#f59e0b', // amber-500
+],
+
     };
 
 
