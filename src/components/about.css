@@ -23,3 +23,9 @@
 .highlight-card:hover {
   transform: translateY(-5px);
 }
+
+/* Text generation effect styles */
+.animate-me {
+  opacity: 0;
+  filter: blur(10px);
+}

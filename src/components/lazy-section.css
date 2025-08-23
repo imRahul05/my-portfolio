@@ -1,0 +1,10 @@
+/* LazySection styles */
+.lazy-section {
+  scroll-margin-top: 4rem; /* Adjust based on header height */
+  min-height: 100px;
+}
+
+/* When a section is in view and active */
+.lazy-section.active {
+  transition: all 0.3s ease-in-out;
+}

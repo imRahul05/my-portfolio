@@ -2,7 +2,7 @@ import React from 'react';
 import { Award, Target, Code } from 'lucide-react';
 import { HandWrittenTitle } from './ui/hand-writing-text';
 import './about.css';
-
+import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 const About = () => {
   return (
     <section id="about" className="pt-8 pb-16 bg-white">
@@ -16,15 +16,23 @@ const About = () => {
         </div>
         
         <div className="text-center mb-16">
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            I'm an <span className="font-semibold text-gray-900">aspiring Software Developer</span> with a strong
-            foundation in <span className="text-blue-600 font-medium">full-stack web development</span>.  
-            I completed my MCA at <span className="font-medium text-gray-900">Visvesvaraya Technological University (VTU)</span>,
-            and was proud to be a <span className="font-semibold text-teal-600">Smart India Hackathon 2023 Winner</span>.  
-            Currently, I'm working on a <span className="font-medium text-gray-900">School LMS</span> project while 
-            sharpening my skills in <span className="font-medium text-gray-900">AI, React.js, Node.js, Express.js, and MongoDB</span>.  
-            My career goal is to contribute as a fresher in a dynamic team where I can grow and build impactful applications.
-          </p>
+          <TextGenerateEffect duration={0.6}>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              <span className="animate-me">I'm an </span>
+              <span className="font-semibold text-gray-900 animate-me">aspiring Software Developer </span>
+              <span className="animate-me">with a strong foundation in </span>
+              <span className="text-blue-600 font-medium animate-me">full-stack web development</span>
+              <span className="animate-me">. I completed my MCA at </span>
+              <span className="font-medium text-gray-900 animate-me">Visvesvaraya Technological University (VTU)</span>
+              <span className="animate-me">, and was proud to be a </span>
+              <span className="font-semibold text-teal-600 animate-me">Smart India Hackathon 2023 Winner</span>
+              <span className="animate-me">. Currently, I'm working on a </span>
+              <span className="font-medium text-gray-900 animate-me">School LMS </span>
+              <span className="animate-me">project while sharpening my skills in </span>
+              <span className="font-medium text-gray-900 animate-me">AI, React.js, Node.js, Express.js, and MongoDB</span>
+              <span className="animate-me">. My career goal is to contribute as a fresher in a dynamic team where I can grow and build impactful applications.</span>
+            </p>
+          </TextGenerateEffect>
         </div>
 
         {/* Highlights */}

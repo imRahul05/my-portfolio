@@ -1,101 +1,151 @@
-import React, { useState, useEffect } from 'react';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import About from './components/About';
-import Skills from './components/Skills';
-import Experience from './components/Experience';
-import Projects from './components/Projects';
-import Education from './components/Education';
-import Contact from './components/Contact';
-import GitHubContributions from './components/GitHubCalendar';
-import MatrixLoader from './components/Loader';
-import './loader.css';
-
-import ChatbotWidget from './components/ChatbotWidget';
+import Hero from "./components/Hero";
+import MatrixLoader from "./components/Loader";
+import SectionLoader from "./components/SectionLoader";
+import { useEffect, useState } from "react";
+import Header from "./components/Header";
+import LazySection from "./components/LazySection";
+import "./loader.css";
 
 function App() {
-  const [activeSection, setActiveSection] = useState('home');
   const [loading, setLoading] = useState(true);
+  const [activeSection, setActiveSection] = useState("home");
 
-  // Effect to update body class based on loading state
+  // Initial loading effect
   useEffect(() => {
-    if (loading) {
-      document.body.classList.add('loading');
-    } else {
-      document.body.classList.remove('loading');
-    }
-  }, [loading]);
-
-  useEffect(() => {
-    // Create a timer for minimum display time of the loader (2.5 seconds)
-    const minDisplayTime = 2500;
-    const startTime = Date.now();
-    
-    // Function to check if minimum time has passed and page has loaded
-    const hideLoader = () => {
-      const elapsedTime = Date.now() - startTime;
-      if (elapsedTime < minDisplayTime) {
-        // If minimum time hasn't elapsed, wait for the remaining time
-        setTimeout(() => setLoading(false), minDisplayTime - elapsedTime);
-      } else {
-        // Minimum time has passed, hide loader
-        setLoading(false);
-      }
-    };
-
-    // Check if the page has already loaded
-    if (document.readyState === 'complete') {
-      hideLoader();
-    } else {
-      // Add event listener for when the page finishes loading
-      window.addEventListener('load', hideLoader);
-    }
-
-    const handleScroll = () => {
-      const sections = ['home', 'about', 'skills', 'experience', 'projects', 'education', 'github-contributions', 'contact'];
-      const scrollPosition = window.scrollY + 100;
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    
-    // Return cleanup function
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('load', hideLoader);
-    };
+    const timer = setTimeout(() => setLoading(false), 2500);
+    return () => clearTimeout(timer);
   }, []);
+  
+  // Handle scroll events to update active section
+  useEffect(() => {
+    // Sections in order of appearance
+    const sections = [
+      'home',
+      'about', 
+      'skills', 
+      'github-contributions',
+      'experience', 
+      'projects', 
+      'education', 
+      'contact'
+    ];
+    
+    // Create a throttled scroll handler for better performance
+    let ticking = false;
+    
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const headerOffset = 100;
+          const scrollPosition = window.scrollY + headerOffset;
+          
+          // Special case for top of page
+          if (scrollPosition < 300) {
+            if (activeSection !== 'home') {
+              setActiveSection('home');
+            }
+            ticking = false;
+            return;
+          }
+          
+          // Special case for bottom of page
+          if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
+            const lastSection = sections[sections.length - 1];
+            if (activeSection !== lastSection) {
+              setActiveSection(lastSection);
+            }
+            ticking = false;
+            return;
+          }
+          
+          // Check each section
+          for (const section of sections) {
+            const element = document.getElementById(section);
+            if (!element) continue;
+            
+            const rect = element.getBoundingClientRect();
+            
+            // Calculate how much of the section is visible
+            const sectionVisibility = (
+              Math.min(rect.bottom, window.innerHeight) - 
+              Math.max(rect.top, 0)
+            ) / rect.height;
+            
+            // If more than 30% visible or element top is near viewport top
+            if (sectionVisibility > 0.3 || (rect.top >= 0 && rect.top < window.innerHeight / 3)) {
+              if (activeSection !== section) {
+                setActiveSection(section);
+              }
+              break;
+            }
+          }
+          
+          ticking = false;
+        });
+        
+        ticking = true;
+      }
+    };
+    
+    // Add scroll event listener with passive option for better performance
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Call once to set initial active section
+    handleScroll();
+    
+    // Cleanup
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [activeSection]);
 
-  if (loading) {
-    return <MatrixLoader />;
-  }
+  if (loading) return <MatrixLoader />;
 
   return (
     <div className="app-content">
       <Header activeSection={activeSection} />
-      <Hero />
-      <About />
-      <Skills />
-      <GitHubContributions />
-      <Experience />
-      <Projects />
-      <Education />
-      <Contact />
+      <section id="home">
+        <Hero />
+      </section>
 
-      {/* 👇 Chatbot always fixed bottom-right */}
-      <ChatbotWidget />
+      <LazySection
+        id="about"
+        importFn={() => import("./components/About")}
+        fallback={<SectionLoader message="Loading About..." />}
+      />
+      <LazySection
+        id="skills"
+        importFn={() => import("./components/Skills")}
+        fallback={<SectionLoader message="Loading Skills..." />}
+      />
+      <LazySection
+        id="github-contributions"
+        importFn={() => import("./components/GitHubCalendar")}
+        fallback={<SectionLoader message="Loading Contributions..." />}
+      />
+      <LazySection
+        id="experience"
+        importFn={() => import("./components/Experience")}
+        fallback={<SectionLoader message="Loading Experience..." />}
+      />
+      <LazySection
+        id="projects"
+        importFn={() => import("./components/Projects")}
+        fallback={<SectionLoader message="Loading Projects..." />}
+      />
+      <LazySection
+        id="education"
+        importFn={() => import("./components/Education")}
+        fallback={<SectionLoader message="Loading Education..." />}
+      />
+      <LazySection
+        id="contact"
+        importFn={() => import("./components/Contact")}
+        fallback={<SectionLoader message="Loading Contact..." />}
+      />
+
+      <LazySection id="chatbot" importFn={() => import("./components/ChatbotWidget")} />
     </div>
   );
 }
+
 
 export default App;
