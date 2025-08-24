@@ -4,6 +4,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import img from '../assets/img.png';
 import { RetroGrid } from './ui/retro-grid';
 import { AnimatedText } from './ui/animated-underline-text-one';
+import { BorderBeam } from './ui/border-beam';
 import './hero.css';
  
 const Hero = () => {
@@ -121,7 +122,14 @@ const Hero = () => {
 
           {/* Right Side */}
           <div className="flex justify-center lg:justify-end">
-            <div className="relative">
+            <div className="relative rounded-full">
+              <BorderBeam 
+                size={400} 
+                duration={20} 
+                colorFrom="#4F46E5" 
+                colorTo="#8B5CF6" 
+                className="opacity-70"
+              />
               <img 
                 src={img}
                 alt="Rahul Kumar" 
