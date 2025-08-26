@@ -1,5 +1,5 @@
 import Hero from "./components/Hero";
-import MatrixLoader from "./components/Loader";
+import TerminalLoader from "./components/Loader";
 import SectionLoader from "./components/SectionLoader";
 import { useEffect, useState } from "react";
 import Header from "./components/Header";
@@ -12,7 +12,7 @@ function App() {
 
   // Initial loading effect
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2500);
+    const timer = setTimeout(() => setLoading(false), 4000);
     return () => clearTimeout(timer);
   }, []);
   
@@ -97,7 +97,7 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [activeSection]);
 
-  if (loading) return <MatrixLoader />;
+  if (loading) return <TerminalLoader />;
 
   return (
     <div className="app-content">
