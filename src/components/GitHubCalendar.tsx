@@ -3,26 +3,39 @@ import GitHubCalendar from 'react-github-calendar';
 
 const GitHubContributions: React.FC = () => {
     // Custom theme colors for GitHub Calendar
-    const colorTheme = {
-        light: [
-            '#808080',
-            '#e9d5ff', // purple-200
-            '#d8b4fe', // purple-300
-            '#c084fc', // purple-400
-            '#a855f7', // purple-500
-        ],
-
-
-       dark: [
-   '#808080',
-  '#fde68a', // amber-200
-  '#fcd34d', // amber-300
-  '#fbbf24', // amber-400
-  '#f59e0b', // amber-500
-],
-
-    };
-
+//     const colorTheme = {
+//     light: [
+//         '#ebedf0', // default light gray
+//         '#9ecbff', // blue-200
+//         '#60a5fa', // blue-400
+//         '#2563eb', // blue-600
+//         '#1d4ed8', // blue-800
+//     ],
+//     dark: [
+//         '#161b22',
+//         '#d8b4fe',
+//         '#a855f7',
+//         '#9333ea',
+//         '#6b21a8',
+//     ],
+// };
+const colorTheme = {
+    light: [
+        '#ebedf0', // default light gray
+        '#9ecbff', // blue-200
+        '#60a5fa', // blue-400
+        '#2563eb', // blue-600
+        '#1d4ed8', // blue-800
+    ],
+    // --- Copy the 'light' array into the 'dark' array ---
+    dark: [
+        '#ebedf0', // default light gray
+        '#9ecbff', // blue-200
+        '#60a5fa', // blue-400
+        '#2563eb', // blue-600
+        '#1d4ed8', // blue-800
+    ],
+};
 
     return (
         <section id="github-contributions" className="py-16 bg-white">
