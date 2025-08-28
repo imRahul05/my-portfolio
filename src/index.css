@@ -98,9 +98,18 @@
 @layer base {
   * {
     @apply border-border;
+    box-sizing: border-box;
+  }
+  html, body {
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
   }
   body {
     @apply bg-background text-foreground;
+    overscroll-behavior-x: none;
+    touch-action: pan-y;
   }
 }
 

@@ -30,6 +30,15 @@ const Connections = () => {
         }
       }
     };
+    
+    // Prevent horizontal scrolling on touch
+    const preventHorizontalScroll = (event) => {
+      // Only prevent horizontal scrolling, allow vertical
+      if (Math.abs(event.touches[0].clientX - event.touches[0].screenX) > 
+          Math.abs(event.touches[0].clientY - event.touches[0].screenY)) {
+        event.preventDefault();
+      }
+    };
 
     checkMobile();
     window.addEventListener('scroll', handleScroll);
@@ -37,11 +46,21 @@ const Connections = () => {
     document.addEventListener('mousedown', handleClickOutside);
     document.addEventListener('touchstart', handleClickOutside);
     
+    // Add touch event listeners to prevent horizontal scrolling
+    const mobileContainer = document.querySelector('.mobile-fab-container');
+    if (mobileContainer) {
+      mobileContainer.addEventListener('touchmove', preventHorizontalScroll, { passive: false });
+    }
+    
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', checkMobile);
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('touchstart', handleClickOutside);
+      
+      if (mobileContainer) {
+        mobileContainer.removeEventListener('touchmove', preventHorizontalScroll);
+      }
     };
   }, [isMobileExpanded]);
 
@@ -327,12 +346,24 @@ const StyledWrapper = styled.div`
       bottom: 20px;
       left: 20px;
       z-index: 1000;
+      width: 56px;
+      height: 56px;
+      pointer-events: none;
+      overflow: visible; /* Allow buttons to be visible outside container */
+      /* Prevent horizontal scrolling from this container */
+      touch-action: pan-y;
+      -webkit-touch-callout: none;
+    }
+
+    /* When expanded, allow more space for buttons */
+    .mobile-fab-container.active {
+      height: 300px;
     }
 
     .mobile-social-btn {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
       width: 48px;
       height: 48px;
       border-radius: 50%;
@@ -348,6 +379,9 @@ const StyledWrapper = styled.div`
       transform: translateY(10px) scale(0.8);
       transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       z-index: 999;
+      pointer-events: auto;
+      transform-origin: center center;
+      will-change: transform, opacity;
     }
 
     .mobile-social-btn.expanded {
@@ -358,9 +392,9 @@ const StyledWrapper = styled.div`
     }
 
     .mobile-fab {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
       width: 56px;
       height: 56px;
       border-radius: 50%;
@@ -373,6 +407,9 @@ const StyledWrapper = styled.div`
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
       z-index: 1001;
       transition: transform 0.3s ease;
+      pointer-events: auto;
+      transform-origin: center center;
+      will-change: transform;
       
       /* Ensure it's always visible on mobile */
       opacity: 1 !important;
@@ -382,6 +419,17 @@ const StyledWrapper = styled.div`
     .mobile-fab:hover {
       transform: scale(1.1);
     }
+
+    /* Prevent any potential layout issues */
+    .mobile-fab:active {
+      transform: scale(0.95);
+    }
+  }
+
+  /* Global fix to prevent horizontal scrolling */
+  body {
+    overflow-x: hidden;
+    max-width: 100vw;
   }
 `;
 

@@ -16,6 +16,34 @@ function App() {
     const timer = setTimeout(() => setLoading(false), 4000);
     return () => clearTimeout(timer);
   }, []);
+
+  // Prevent horizontal overscroll on mobile
+  useEffect(() => {
+    // Function to prevent horizontal overscroll
+    const preventHorizontalScroll = (event: TouchEvent) => {
+      // Check if the touch movement is more horizontal than vertical
+      if (event.touches && event.touches.length && 
+          Math.abs(event.touches[0].clientX - event.touches[0].screenX) > 
+          Math.abs(event.touches[0].clientY - event.touches[0].screenY)) {
+        // Only prevent if at edge of screen
+        const touchX = event.touches[0].clientX;
+        const screenWidth = window.innerWidth;
+        
+        // If near edge of screen (within 20px), prevent default
+        if (touchX < 20 || touchX > screenWidth - 20) {
+          event.preventDefault();
+        }
+      }
+    };
+
+    // Add event listener
+    document.addEventListener('touchmove', preventHorizontalScroll, { passive: false });
+    
+    // Cleanup
+    return () => {
+      document.removeEventListener('touchmove', preventHorizontalScroll);
+    };
+  }, []);
   
   // Handle scroll events to update active section
   useEffect(() => {
