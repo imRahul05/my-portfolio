@@ -4,6 +4,7 @@ import SectionLoader from "./components/SectionLoader";
 import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import LazySection from "./components/LazySection";
+import Connections from "./components/Connections";
 import "./loader.css";
 
 function App() {
@@ -102,6 +103,8 @@ function App() {
   return (
     <div className="app-content">
       <Header activeSection={activeSection} />
+      {/* Floating Social Connections */}
+      <Connections />
       <section id="home">
         <Hero />
       </section>

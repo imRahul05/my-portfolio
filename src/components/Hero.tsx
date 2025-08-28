@@ -5,7 +5,6 @@ import img from '../assets/img.png';
 import { RetroGrid } from './ui/retro-grid';
 import { AnimatedText } from './ui/animated-underline-text-one';
 import { BorderBeam } from './ui/border-beam';
-import Connections from './Connections';
 import './hero.css';
  
 const Hero = () => {
@@ -36,9 +35,6 @@ const Hero = () => {
     <section id="home" className="min-h-screen pt-20 px-4 sm:px-6 lg:px-8 flex items-center relative">
       {/* RetroGrid Background */}
       <RetroGrid className="opacity-30 dark:opacity-40 hero-retro-grid" angle={55} />
-      
-      {/* Floating Social Connections */}
-      <Connections />
       
       <div className="max-w-7xl mx-auto w-full px-16 relative z-10 hero-content">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
