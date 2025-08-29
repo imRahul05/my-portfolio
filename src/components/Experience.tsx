@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { X } from 'lucide-react';
 import sihCertificate from '../assets/certificates/SIH_CERRIFICATE.png';
 import { BackgroundPaths } from './ui/background-paths';
+import Modal from './ui/Modal';
 import './experience.css';
 
 const Experience = () => {
@@ -58,27 +59,43 @@ const Experience = () => {
           </p>
         </div>
         
-        {/* Certificate Modal */}
-        {selectedCertificate && (
-          <div className="fixed inset-0 certificate-modal flex items-center justify-center z-50 p-4">
-            <div className="relative max-w-4xl w-full">
-              <button 
-                onClick={() => setSelectedCertificate(null)}
-                className="absolute -top-12 right-0 text-white hover:text-gray-300 p-2"
-                title="Close certificate view"
-                aria-label="Close certificate view"
-              >
-                <X size={24} />
-                <span className="sr-only">Close</span>
-              </button>
+        {/* Certificate Modal - Using Portal to render at root level above navbar */}
+        <Modal
+          isOpen={!!selectedCertificate}
+          onClose={() => setSelectedCertificate(null)}
+          className="certificate-modal"
+        >
+          <div className="relative max-w-4xl w-full bg-white p-2 rounded-lg shadow-2xl">
+            {/* Close button outside the image (keep for accessibility) */}
+            <button 
+              onClick={() => setSelectedCertificate(null)}
+              className="absolute -top-14 right-0 text-white hover:text-gray-300 p-2 bg-black/50 rounded-full"
+              title="Close certificate view"
+              aria-label="Close certificate view"
+            >
+              <X size={24} />
+              <span className="sr-only">Close</span>
+            </button>
+            
+            {/* Close button directly on the image */}
+            <button 
+              onClick={() => setSelectedCertificate(null)}
+              className="absolute top-4 right-4 z-50 bg-red-600 hover:bg-red-700 text-white p-2 rounded-full shadow-lg transition-all duration-200 transform hover:scale-110"
+              title="Close certificate view"
+              aria-label="Close certificate view"
+            >
+              <X size={24} strokeWidth={2.5} />
+            </button>
+            
+            {selectedCertificate && (
               <img 
                 src={selectedCertificate} 
                 alt="Certificate" 
-                className="w-full h-auto rounded-lg shadow-2xl"
+                className="w-full h-auto rounded-lg"
               />
-            </div>
+            )}
           </div>
-        )}
+        </Modal>
       </div>
     </section>
   );

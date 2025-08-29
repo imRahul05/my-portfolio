@@ -104,12 +104,26 @@
     overflow-x: hidden;
     position: relative;
     width: 100%;
-    -webkit-overflow-scrolling: touch;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
   }
   body {
     @apply bg-background text-foreground;
     overscroll-behavior-x: none;
     touch-action: pan-y;
+    min-height: 100vh;
+    background-color: white; /* Light mode background */
+  }
+  
+  body.dark {
+    background-color: black; /* Dark mode background */
+  }
+  
+  #root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
 }
 

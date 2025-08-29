@@ -30,7 +30,46 @@
 
 /* Modal backdrop with blur effect */
 .certificate-modal {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.9);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
+  animation: fadeIn 0.2s ease-out;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000; /* Ensure higher than navbar's z-index (50) */
+  /* Prevent scrolling by any means */
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Add animation to modal content */
+.certificate-modal > div {
+  animation: scaleIn 0.3s ease-out;
+  max-height: 90vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }

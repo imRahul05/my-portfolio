@@ -32,7 +32,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen pt-20 px-4 sm:px-6 lg:px-8 flex items-center relative">
+    <section id="home" className="min-h-screen pt-20 px-0 flex items-center relative w-full overflow-hidden">
       {/* RetroGrid Background */}
       <RetroGrid className="opacity-30 dark:opacity-40 hero-retro-grid" angle={55} />
       

@@ -1,6 +1,10 @@
 /* Add this to your index.css or create a loader.css file */
 .app-content {
   animation: fadeIn 0.5s ease-in-out;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
 }
 
 @keyframes fadeIn {
