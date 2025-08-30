@@ -112,8 +112,8 @@ const Skills = () => {
         </div>
 
         {/* Gradient overlays for smooth edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-gray-50 to-transparent pointer-events-none z-10"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-blue-50 to-transparent pointer-events-none z-10"></div>
+<div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-transparent to-transparent pointer-events-none z-10"></div>
+<div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-transparent to-transparent pointer-events-none z-10"></div>
       </div>
 
       <style>{`
