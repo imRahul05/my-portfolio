@@ -1,5 +1,7 @@
 # Rahul Kumar - Personal Portfolio
 
+![Portfolio Preview](./src/assets/1.png)
+
 ## 🌟 Overview
 
 This is my personal portfolio website built with React, TypeScript, and Tailwind CSS. The site showcases my projects, skills, experience, and education to provide a comprehensive view of my professional profile.
