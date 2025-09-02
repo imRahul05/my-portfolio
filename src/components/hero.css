@@ -32,3 +32,111 @@
   stroke-width: 3px;
   filter: drop-shadow(0 0 3px rgba(249, 115, 22, 0.5));
 }
+
+/* Social Links Animation Styles (similar to Connections.tsx) */
+.social-links-container {
+  display: flex;
+  gap: 12px;
+}
+
+.social-btn {
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  font-family: 'Titillium Web', sans-serif;
+  color: #333;
+  border-radius: 50%;  /* Changed from 10px to 50% to make it circular */
+  box-shadow: 0px 5px 10px rgba(0,0,0,0.07);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(4px);
+  transition: 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-btn svg {
+  height: 20px;
+  width: 20px;
+}
+
+.social-btn span {
+  width: 0px;
+  overflow: hidden;
+  transition: 0.3s;
+  text-align: left;
+  margin-left: 0px;
+  font-weight: 500;
+  color: #333;
+  white-space: nowrap;
+}
+
+.social-btn:hover {
+  width: 140px;
+  border-radius: 20px;  /* Changed from 5px to 20px for rounded pill shape when expanded */
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.social-btn:hover span {
+  padding: 2px;
+  width: 80px;
+  margin-left: 10px;
+  overflow: visible;
+}
+
+#github-hero {
+  background: rgba(51, 51, 51, 0.9);
+  color: white;
+}
+
+#github-hero:hover {
+  background: rgba(51, 51, 51, 0.1);
+  border: 1px solid #333;
+  color: #333;
+}
+
+#github-hero svg {
+  color: white;
+}
+
+#github-hero:hover svg {
+  color: #333;
+}
+
+#linkedin-hero {
+  background: rgba(14, 118, 168, 0.9);
+  color: white;
+}
+
+#linkedin-hero:hover {
+  background: rgba(14, 118, 168, 0.1);
+  border: 1px solid #0e76a8;
+  color: #0e76a8;
+}
+
+#linkedin-hero svg {
+  color: white;
+}
+
+#linkedin-hero:hover svg {
+  color: #0e76a8;
+}
+
+#twitter-hero {
+  background: rgba(29, 161, 242, 0.9);
+  color: white;
+}
+
+#twitter-hero:hover {
+  background: rgba(29, 161, 242, 0.1);
+  border: 1px solid #1da1f2;
+  color: #1da1f2;
+}
+
+#twitter-hero svg {
+  color: white;
+}
+
+#twitter-hero:hover svg {
+  color: #1da1f2;
+}

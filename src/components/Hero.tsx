@@ -67,37 +67,43 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* Social Links */}
-            <div className="flex gap-4 mb-6">
+            {/* Social Links with animation similar to Connections.tsx */}
+            <div className="social-links-container mb-6">
               <a
                 href="https://github.com/imRahul05"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-gray-800 hover:bg-gray-900 rounded-full flex items-center justify-center text-white transition-all duration-200"
+                className="social-btn flex-center"
+                id="github-hero"
                 title="GitHub Profile"
                 aria-label="Visit Rahul's GitHub Profile"
               >
                 <Github size={20} />
+                <span>GitHub</span>
               </a>
               <a
                 href="https://linkedin.com/in/imrahul05"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center text-white transition-all duration-200"
+                className="social-btn flex-center"
+                id="linkedin-hero"
                 title="LinkedIn Profile"
                 aria-label="Visit Rahul's LinkedIn Profile"
               >
                 <Linkedin size={20} />
+                <span>LinkedIn</span>
               </a>
               <a
                 href="https://twitter.com/imrahul165"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-sky-400 hover:bg-sky-500 rounded-full flex items-center justify-center text-white transition-all duration-200"
+                className="social-btn flex-center"
+                id="twitter-hero"
                 title="Twitter Profile"
                 aria-label="Visit Rahul's Twitter Profile"
               >
                 <FaXTwitter size={20} />
+                <span>Twitter</span>
               </a>
             </div>
 
