@@ -1,9 +1,9 @@
+
 import React from 'react';
 import { Github, ExternalLink, Star, Code } from 'lucide-react';
 import { FlickeringGrid } from './ui/flickering-grid';
 import './projects.css';
 
-// Import project images
 import FinSageImg from '../assets/Projects/FinSage.png';
 import pillpalImg from '../assets/Projects/pillpal.png';
 import crmsImg from '../assets/Projects/crms.png';
@@ -11,31 +11,18 @@ import omsImg from '../assets/Projects/oms.png';
 import FriendLoopImg from '../assets/Projects/FriendLoop.png';
 import bloggyImg from '../assets/Projects/bloggy.png';
 import communityGifImg from '../assets/Projects/community.gif';
-// Commented out unused imports
-// import movieStreamImg from '../assets/Projects/movie-stream.png';
-// import donationImg from '../assets/Projects/donation.png';
-// import mnsImg from '../assets/Projects/mns.png';
 
 const Projects = () => {
   const projects = [
-    // {
-    //   name: "School Management System",
-    //   description: "A comprehensive school management system and website designed to serve various stakeholders including students, parents, teachers, and administrators. The application includes both public-facing pages and authenticated portals for different user types.",
-    //   technologies: ["MERN"],
-    //   github: "https://github.com/imRahul05/mansarovar_public_school",
-    //   url: "https://mansarovar-public-school-green.vercel.app/",
-    //   // stars: 2,
-    //   image: mnsImg,
-    //   category: "Education"
-    // },
     {
       name: "FinSage AI",
       description: "A better way to manage your finances. Take control of your financial journey with our comprehensive suite of tools.",
       technologies: ["React", "Web", "JSX"],
       github: "https://github.com/imRahul05/Fin_service",
       url: "https://finsage-ai.vercel.app/",
-      // stars: 1,
       image: FinSageImg,
+      // Embedded Drive video link (autoplay enabled)
+      video: "https://res.cloudinary.com/divkfbddw/video/upload/v1756879926/Screen_Recording_2025-09-03_at_11.40.15_AM_qxxhxn.mov",
       category: "Web"
     },
     {
@@ -46,6 +33,7 @@ const Projects = () => {
       url: "https://pill-pal-ai.vercel.app/",
       // stars: 2,
       image: pillpalImg,
+      video:'https://res.cloudinary.com/divkfbddw/video/upload/v1756880629/Screen_Recording_2025-09-03_at_11.51.59_AM_yxxqql.mov',
       category: "Healthcare"
     },
     {
@@ -109,7 +97,7 @@ const Projects = () => {
   return (
     <section id="projects" className="py-16 relative">
       <div className="absolute inset-0 z-0">
-        <FlickeringGrid 
+        <FlickeringGrid
           squareSize={5}
           gridGap={8}
           flickerChance={0.15}
@@ -134,26 +122,29 @@ const Projects = () => {
               key={index}
               className="project-card rounded-xl shadow-sm overflow-hidden group"
             >
-              <div className="relative overflow-hidden">
+              <div className="relative overflow-hidden h-48">
                 <img
                   src={project.image}
                   alt={project.name}
-                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
+                {project.video && (
+                  <video
+                    src={project.video}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  />
+                )}
                 <div className="absolute top-4 right-4">
                   <span className="category-badge px-3 py-1 rounded-full text-xs font-medium text-gray-700">
                     {project.category}
                   </span>
                 </div>
-                {/* {project.stars && (
-                  <div className="absolute top-4 left-4 flex items-center gap-1 bg-yellow-500/90 backdrop-blur-sm px-2 py-1 rounded-full">
-                    <Star size={12} fill="white" className="text-white" />
-                    <span className="text-xs text-white font-medium">
-                      {project.stars}
-                    </span>
-                  </div>
-                )} */}
               </div>
+
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-200">
                   {project.name}
@@ -210,309 +201,3 @@ const Projects = () => {
 };
 
 export default Projects;
-// "use client"
-
-// import { useRef, useState } from "react"
-// import { Github, ExternalLink, Code } from "lucide-react"
-// import { FlickeringGrid } from "./ui/flickering-grid"
-// import "./projects.css"
-
-// // Import project images
-// import FinSageImg from "../assets/Projects/FinSage.png"
-// import pillpalImg from "../assets/Projects/pillpal.png"
-// import crmsImg from "../assets/Projects/crms.png"
-// import omsImg from "../assets/Projects/oms.png"
-// import FriendLoopImg from "../assets/Projects/FriendLoop.png"
-// import bloggyImg from "../assets/Projects/bloggy.png"
-// import communityGifImg from "../assets/Projects/community.gif"
-// // Commented out unused imports
-// // import movieStreamImg from '../assets/Projects/movie-stream.png';
-// // import donationImg from '../assets/Projects/donation.png';
-// // import mnsImg from '../assets/Projects/mns.png';
-
-// // Helper to normalize Google Drive URLs to a direct playable link
-// function normalizeDriveUrl(url?: string): string | undefined {
-//   if (!url) return undefined
-//   try {
-//     // Matches common Drive viewer or share links:
-//     // https://drive.google.com/file/d/<FILE_ID>/view?usp=sharing
-//     // https://drive.google.com/open?id=<FILE_ID>
-//     // https://drive.google.com/uc?id=<FILE_ID>
-//     const viewerMatch = url.match(/\/file\/d\/([^/]+)/)
-//     const openMatch = url.match(/[?&]id=([^&]+)/)
-//     const id = viewerMatch?.[1] || openMatch?.[1]
-//     if (id) {
-//       // Use a direct download/stream URL that <video> can load
-//       return `https://drive.google.com/uc?export=download&id=${id}`
-//     }
-//     // If it's already a uc link or some other direct URL, just return as-is
-//     return url
-//   } catch {
-//     return url
-//   }
-// }
-
-// function ProjectCard({ project }: { project: any }) {
-//   const [hover, setHover] = useState(false)
-//   const videoRef = useRef<HTMLVideoElement | null>(null)
-
-//   // Determine if the base image is a GIF (so we can reveal it only on hover)
-//   const isGif = typeof project?.image === "string" && project.image.toLowerCase().endsWith(".gif")
-
-//   // Compute normalized video src once so we can safely use Drive links
-//   const videoSrc = project?.video ? normalizeDriveUrl(project.video) : undefined
-
-//   const handleEnter = () => {
-//     setHover(true)
-//     // Play if there's a video
-//     if (project?.video && videoRef.current) {
-//       // Ensure fresh playback on hover
-//       try {
-//         videoRef.current.currentTime = 0
-//         videoRef.current.play().catch(() => {})
-//       } catch {}
-//     }
-//   }
-
-//   const handleLeave = () => {
-//     setHover(false)
-//     // Pause/reset video on mouse leave
-//     if (videoRef.current) {
-//       try {
-//         videoRef.current.pause()
-//         videoRef.current.currentTime = 0
-//       } catch {}
-//     }
-//   }
-
-//   return (
-//     <div
-//       className="project-card rounded-xl shadow-sm overflow-hidden group"
-//       onMouseEnter={handleEnter}
-//       onMouseLeave={handleLeave}
-//     >
-//       <div className="relative overflow-hidden">
-//         {/* Base thumbnail image (always rendered) */}
-//         <img
-//           src={project.image || "/placeholder.svg"}
-//           alt={project.name}
-//           className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-//         />
-
-//         {/* Hover media overlay */}
-//         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-//           {hover && (
-//             <>
-//               {videoSrc ? (
-//                 // Use normalized video src, add poster, keep preload=none
-//                 <video
-//                   ref={videoRef}
-//                   className="w-full h-48 object-cover"
-//                   muted
-//                   playsInline
-//                   loop
-//                   autoPlay
-//                   preload="none"
-//                   src={videoSrc}
-//                   // Use the base image as a poster if it's a string (likely a URL)
-//                   poster={typeof project.image === "string" ? project.image : undefined}
-//                 />
-//               ) : isGif ? (
-//                 // Render the GIF only on hover to avoid loading it before
-//                 <img
-//                   src={project.image || "/placeholder.svg"}
-//                   alt={`${project.name} preview`}
-//                   className="w-full h-48 object-cover"
-//                 />
-//               ) : null}
-//             </>
-//           )}
-//         </div>
-
-//         <div className="absolute top-4 right-4">
-//           <span className="category-badge px-3 py-1 rounded-full text-xs font-medium text-gray-700">
-//             {project.category}
-//           </span>
-//         </div>
-
-//         {/* Stars badge remains optional (commented out in original) */}
-//       </div>
-
-//       {/* Card body (unchanged) */}
-//       <div className="p-6">
-//         <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-200">
-//           {project.name}
-//         </h3>
-//         <p className="text-gray-600 mb-4 text-sm leading-relaxed line-clamp-3">{project.description}</p>
-//         <div className="mb-4">
-//           <div className="flex flex-wrap gap-2">
-//             {project.technologies.map((tech: string, techIndex: number) => (
-//               <span
-//                 key={techIndex}
-//                 className="tech-badge bg-gradient-to-r from-blue-50 to-teal-50 text-blue-700 px-3 py-1 rounded-full text-xs font-medium border border-blue-200"
-//               >
-//                 {tech}
-//               </span>
-//             ))}
-//           </div>
-//         </div>
-//         <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-//           <div className="flex gap-3">
-//             {project.github && (
-//               <a
-//                 href={project.github}
-//                 target="_blank"
-//                 rel="noopener noreferrer"
-//                 className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors duration-200 text-sm font-medium"
-//               >
-//                 {/* Github icon is imported in the original file */}
-//                 <Github size={16} /> Code
-//               </a>
-//             )}
-//             {project.url && (
-//               <a
-//                 href={project.url}
-//                 target="_blank"
-//                 rel="noopener noreferrer"
-//                 className="flex items-center gap-2 text-blue-600 hover:text-blue-800 transition-colors duration-200 text-sm font-medium"
-//               >
-//                 <ExternalLink size={16} /> Live Demo
-//               </a>
-//             )}
-//           </div>
-//           <div className="flex items-center gap-1 text-gray-400">
-//             <Code size={14} />
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
-
-// const Projects = () => {
-//   const projects = [
-//     // {
-//     //   name: "School Management System",
-//     //   description: "A comprehensive school management system and website designed to serve various stakeholders including students, parents, teachers, and administrators. The application includes both public-facing pages and authenticated portals for different user types.",
-//     //   technologies: ["MERN"],
-//     //   github: "https://github.com/imRahul05/mansarovar_public_school",
-//     //   url: "https://mansarovar-public-school-green.vercel.app/",
-//     //   // stars: 2,
-//     //   image: mnsImg,
-//     //   category: "Education"
-//     // },
-//     {
-//       name: "FinSage AI",
-//       description:
-//         "A better way to manage your finances. Take control of your financial journey with our comprehensive suite of tools.",
-//       technologies: ["React", "Web", "JSX"],
-//       github: "https://github.com/imRahul05/Fin_service",
-//       url: "https://finsage-ai.vercel.app/",
-//       // stars: 1,
-//       image: FinSageImg,
-//       category: "Web",
-//       video: "/videos/project-preview.mp4",
-//     },
-//     {
-//       name: "PillPal AI",
-//       description:
-//         "PillPal helps you manage medications, track doses, and stay on top of refills with smart reminders and a simple tracking system.",
-//       technologies: ["React", "Web", "JS", "FireBase"],
-//       github: "https://github.com/imRahul05/PillPal",
-//       url: "https://pill-pal-ai.vercel.app/",
-//       // stars: 2,
-//       image: pillpalImg,
-//       category: "Healthcare",
-//     },
-//     {
-//       name: "CRMS - Candidate Referral System",
-//       description:
-//         "A comprehensive web application for managing employee referrals. Employees can submit and track referrals while admins manage the hiring pipeline.",
-//       technologies: ["MERN", "Tailwind", "JWT"],
-//       github: "https://github.com/imRahul05/crms-MERN",
-//       url: "https://crms-frontend-theta.vercel.app",
-//       // stars: 1,
-//       image: crmsImg,
-//       category: "Web",
-//     },
-//     {
-//       name: "OMS - Order Management System",
-//       description:
-//         "A web app for managing orders with role-based authentication. Users can place orders, staff/admins can manage them via dashboards.",
-//       technologies: ["MERN", "Vite", "Tailwind", "JWT"],
-//       github: "https://github.com/imRahul05/Order_management_system",
-//       url: "https://order-management-system-inky-alpha.vercel.app/",
-//       // stars: 1,
-//       image: omsImg,
-//       category: "E-commerce",
-//     },
-//     {
-//       name: "FriendLoop",
-//       description:
-//         "Facebook-inspired web app with authentication, posting, notifications, and interactive UI components.",
-//       technologies: ["HTML", "CSS", "JavaScript"],
-//       github: "https://github.com/imRahul05/masai_WEB205_Unit_3_Facebook_clone",
-//       url: "https://fb-clone-masai.netlify.app/",
-//       image: FriendLoopImg,
-//       category: "Web",
-//     },
-//     {
-//       name: "Bloogyy",
-//       description:
-//         "Blog site using React, Node.js, Express, MongoDB, and Firebase for real-time updates and authentication. Includes commenting and upvoting.",
-//       technologies: ["MERN", "Firebase"],
-//       github: "https://github.com/imRahul05/Blog_frontend",
-//       url: "https://bloogyy.vercel.app/",
-//       image: bloggyImg,
-//       category: "Blog Platform",
-//     },
-//     {
-//       name: "Community Care",
-//       description:
-//         "Mobile app built with Flutter + Firebase for Smart India Hackathon 2023. Lets users post local municipal issues like sanitation directly to authorities.",
-//       technologies: ["Flutter", "Mobile", "Firebase"],
-//       github: "https://github.com/imRahul05/Community-Care",
-//       url: "https://communitycarev4.web.app/",
-//       image: communityGifImg,
-//       category: "Mobile App",
-//     },
-//     // {
-//     //   name: "Movie-Stream",
-//     //   description: "Streaming platform for movies and TV shows with TMDB, IMDB, and Rapid API integration for dynamic content, trailers, and discovery.",
-//     //   technologies: ["React", "Web", "TS"],
-//     //   github: "https://github.com/imRahul05/GiftofHope",
-//     //   url: "https://movie-stream-phi.vercel.app/",
-//     //   image: movieStreamImg,
-//     //   category: "Web"
-//     // }
-//   ]
-
-//   return (
-//     <section id="projects" className="py-16 relative">
-//       <div className="absolute inset-0 z-0">
-//         <FlickeringGrid
-//           squareSize={5}
-//           gridGap={8}
-//           flickerChance={0.15}
-//           color="rgb(59, 130, 246)"
-//           maxOpacity={0.1}
-//           className="w-full h-full"
-//         />
-//       </div>
-//       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-//         <div className="text-center mb-16">
-//           <h2 className="projects-heading text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Featured Projects</h2>
-//           <p className="text-lg text-gray-600">A showcase of my technical projects and contributions</p>
-//         </div>
-
-//         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-//           {projects.map((project, index) => (
-//             <ProjectCard key={index} project={project} />
-//           ))}
-//         </div>
-//       </div>
-//     </section>
-//   )
-// }
-
-// export default Projects
