@@ -42,12 +42,20 @@ const Hero = () => {
   };
 
   // Function to handle hire me -> Gmail compose
-  const handleHireMe = () => {
-    window.open(
-      "https://mail.google.com/mail/?view=cm&fs=1&to=rahulkumar20000516@gmail.com",
-      "_blank"
-    );
-  };
+  // Function to handle hire me -> Gmail compose
+const handleHireMe = () => {
+  const email = "rahulkumar20000516@gmail.com";
+  const subject = encodeURIComponent("Job Opportunity - Let's Connect");
+  const body = encodeURIComponent(
+    "Hi Rahul,\n\nI came across your portfolio and I'm interested in discussing potential opportunities with you.\n\nBest Regards,\n[Your Name]"
+  );
+
+  window.open(
+    `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${body}`,
+    "_blank"
+  );
+};
+
 
   return (
     <section id="home" className="min-h-screen pt-20 px-0 flex items-center relative w-full overflow-hidden">
