@@ -6,6 +6,7 @@ import { RetroGrid } from './ui/retro-grid';
 import { AnimatedText } from './ui/animated-underline-text-one';
 import { BorderBeam } from './ui/border-beam';
 import { Confetti } from './magicui/confetti';
+import { motion } from "framer-motion"
 import './hero.css';
  
 const Hero = () => {
@@ -38,11 +39,9 @@ const Hero = () => {
       setTimeout(() => {
         setShowConfetti(false);
       }, 3000);
-    }, 1200); // Simulating download delay of 1.2 seconds
+    }, 1200); 
   };
 
-  // Function to handle hire me -> Gmail compose
-  // Function to handle hire me -> Gmail compose
 const handleHireMe = () => {
   const email = "rahulkumar20000516@gmail.com";
   const subject = encodeURIComponent("Job Opportunity - Let's Connect");
