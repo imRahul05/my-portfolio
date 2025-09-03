@@ -1,26 +1,44 @@
-import React from 'react';
-import { MapPin, Mail, Download, ExternalLink, Github, Linkedin } from 'lucide-react';
+import { useState } from 'react';
+import { MapPin, Mail, Download, ExternalLink, Github, Linkedin, Loader2 } from 'lucide-react';
 import { FaXTwitter } from "react-icons/fa6";
 import img from '../assets/img1.gif';
 import { RetroGrid } from './ui/retro-grid';
 import { AnimatedText } from './ui/animated-underline-text-one';
 import { BorderBeam } from './ui/border-beam';
+import { Confetti } from './magicui/confetti';
 import './hero.css';
  
 const Hero = () => {
+  const [isDownloading, setIsDownloading] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
+  
   // Function to handle resume download + open in new tab
   const handleResumeDownload = () => {
-    //Create a hidden link element
+    setIsDownloading(true);
     const resumeUrl = "/Rahul_Kumar_Resume.pdf";
-    const downloadLink = document.createElement("a");
-    downloadLink.href = resumeUrl;
-    downloadLink.download = "Rahul_Kumar_Resume.pdf"; // file name
-    document.body.appendChild(downloadLink);
-    downloadLink.click();
-    document.body.removeChild(downloadLink);
-
-    // Open resume in new tab
-    window.open(resumeUrl, "_blank");
+    
+    // Simulate download delay (you can remove this in production)
+    setTimeout(() => {
+      // Create a hidden link element
+      const downloadLink = document.createElement("a");
+      downloadLink.href = resumeUrl;
+      downloadLink.download = "Rahul_Kumar_Resume.pdf"; // file name
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+      
+      // Open resume in new tab
+      window.open(resumeUrl, "_blank");
+      
+      // Set downloading to false and trigger confetti
+      setIsDownloading(false);
+      setShowConfetti(true);
+      
+      // Reset confetti after animation completes
+      setTimeout(() => {
+        setShowConfetti(false);
+      }, 3000);
+    }, 1200); // Simulating download delay of 1.2 seconds
   };
 
   // Function to handle hire me -> Gmail compose
@@ -108,13 +126,34 @@ const Hero = () => {
             </div>
 
             {/* Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 relative">
+              {showConfetti && (
+                <div className="absolute inset-0 pointer-events-none z-10">
+                  <Confetti 
+                    options={{
+                      particleCount: 100,
+                      spread: 70,
+                      origin: { y: 0.6 }
+                    }}
+                  />
+                </div>
+              )}
               <button
                 onClick={handleResumeDownload}
-                className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all duration-200 font-medium hero-button"
+                disabled={isDownloading}
+                className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all duration-200 font-medium hero-button disabled:opacity-70"
               >
-                <Download size={20} />
-                Download Resume
+                {isDownloading ? (
+                  <>
+                    <Loader2 size={20} className="animate-spin" />
+                    Downloading...
+                  </>
+                ) : (
+                  <>
+                    <Download size={20} />
+                    Download Resume
+                  </>
+                )}
               </button>
               <button
                 onClick={handleHireMe}
