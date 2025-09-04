@@ -29,7 +29,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection, openCommandMenu }) => {
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
     { id: 'skills', label: 'Skills' },
-    { id: 'github-contributions', label: 'GitHub Activity' },
+    // { id: 'github-contributions', label: 'GitHub Activity' },
     { id: 'experience', label: 'Certification' },
     { id: 'projects', label: 'Projects' },
     { id: 'education', label: 'Education' },
