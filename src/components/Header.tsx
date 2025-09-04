@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Search } from 'lucide-react';
 
 interface HeaderProps {
   activeSection: string;
+  openCommandMenu?: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ activeSection }) => {
+const Header: React.FC<HeaderProps> = ({ activeSection, openCommandMenu }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
@@ -60,14 +61,31 @@ const Header: React.FC<HeaderProps> = ({ activeSection }) => {
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-600 hover:text-gray-900"
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+          <div className="flex items-center gap-2">
+            {/* Command menu button - visible on mobile and desktop */}
+            {openCommandMenu && (
+              <button
+                onClick={openCommandMenu}
+                className="flex items-center gap-2 text-sm py-1 px-3 bg-gray-100 rounded-md text-gray-500 hover:bg-gray-200 transition-colors"
+                title="Search"
+              >
+                <Search size={14} />
+                <span className="hidden sm:inline">Search</span>
+                <kbd className="hidden sm:inline ml-1 text-xs bg-white px-1.5 py-0.5 border border-gray-300 rounded">
+                  {navigator.platform.toLowerCase().includes('mac') ? '⌘K' : 'Ctrl+K'}
+                </kbd>
+              </button>
+            )}
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="text-gray-600 hover:text-gray-900"
+              >
+                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
           </div>
         </div>
 

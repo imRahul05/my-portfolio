@@ -5,11 +5,42 @@ import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import LazySection from "./components/LazySection";
 import Connections from "./components/Connections";
+import CommandMenu from "./components/CommandMenu";
 import "./loader.css";
 
 function App() {
   const [loading, setLoading] = useState(true);
   const [activeSection, setActiveSection] = useState("home");
+  const [isCommandMenuOpen, setIsCommandMenuOpen] = useState(false);
+  
+  // Navigation items that match our sections
+  const navItems = [
+    { id: 'home', label: 'Home' },
+    { id: 'about', label: 'About' },
+    { id: 'skills', label: 'Skills' },
+    { id: 'github-contributions', label: 'GitHub Activity' },
+    { id: 'experience', label: 'Certification' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'education', label: 'Education' },
+    { id: 'contact', label: 'Contact' }
+  ];
+  
+  // Function to scroll to a section
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      // Calculate offset for header height plus a small buffer
+      const headerOffset = 70;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset;
+      
+      // Scroll with smooth behavior
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   // Initial loading effect
   useEffect(() => {
@@ -130,7 +161,20 @@ function App() {
 
   return (
     <div className="app-content">
-      <Header activeSection={activeSection} />
+      {/* Command Menu */}
+      <CommandMenu 
+        sections={navItems}
+        scrollTo={scrollToSection}
+        isOpen={isCommandMenuOpen}
+        setIsOpen={setIsCommandMenuOpen}
+      />
+      
+      {/* Header with command menu toggle button */}
+      <Header 
+        activeSection={activeSection} 
+        openCommandMenu={() => setIsCommandMenuOpen(true)}
+      />
+      
       {/* Floating Social Connections */}
       <Connections />
       <section id="home">
