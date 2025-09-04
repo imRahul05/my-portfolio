@@ -6,7 +6,6 @@ import { RetroGrid } from './ui/retro-grid';
 import { AnimatedText } from './ui/animated-underline-text-one';
 import { BorderBeam } from './ui/border-beam';
 import { Confetti } from './magicui/confetti';
-import { motion } from "framer-motion"
 import './hero.css';
  
 const Hero = () => {
@@ -57,19 +56,19 @@ const handleHireMe = () => {
 
 
   return (
-    <section id="home" className="min-h-screen pt-20 px-0 flex items-center relative w-full overflow-hidden">
+    <section id="home" className="min-h-screen pt-20 pb-12 md:pb-16 lg:pb-0 px-0 flex items-center relative w-full overflow-hidden">
       {/* RetroGrid Background */}
       <RetroGrid className="opacity-30 dark:opacity-40 hero-retro-grid" angle={55} />
       
-      <div className="max-w-7xl mx-auto w-full px-16 relative z-10 hero-content">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-16 relative z-10 hero-content">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-6 lg:gap-12 items-center">
           {/* Left Side */}
-          <div className="space-y-8">
+          <div className="space-y-6 md:space-y-8 text-center lg:text-left">
             <div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 hero-heading">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 hero-heading text-center lg:text-left">
                 Rahul Kumar
               </h1>
-              <div className="mb-10 mt-2">
+              <div className="mb-8 mt-2">
                 <AnimatedText 
                   text="Aspiring Software Developer" 
                   textClassName="text-xl sm:text-2xl text-gray-600 hero-heading"
@@ -77,15 +76,15 @@ const handleHireMe = () => {
                   underlinePath="M 0,10 Q 85,0 170,10 Q 255,20 340,10"
                   underlineHoverPath="M 0,10 Q 85,20 170,10 Q 255,0 340,10"
                   underlineDuration={1.8}
-                  className="animated-underline !items-start"
+                  className="animated-underline lg:!items-start flex justify-center lg:justify-start"
                 />
               </div>
               <div className="space-y-4 text-gray-600">
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 justify-center lg:justify-start">
                   <MapPin size={20} />
                   <span>Bengaluru, Karnataka, India</span>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 justify-center lg:justify-start">
                   <Mail size={20} />
                   <span>imrahul2516@gmail.com</span>
                 </div>
@@ -93,7 +92,7 @@ const handleHireMe = () => {
             </div>
 
             {/* Social Links with animation similar to Connections.tsx */}
-            <div className="social-links-container mb-6">
+            <div className="social-links-container mb-6 flex justify-center lg:justify-start">
               <a
                 href="https://github.com/imRahul05"
                 target="_blank"
@@ -133,7 +132,7 @@ const handleHireMe = () => {
             </div>
 
             {/* Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 relative">
+            <div className="flex flex-col sm:flex-row gap-4 relative justify-center lg:justify-start">
               {showConfetti && (
                 <div className="absolute inset-0 pointer-events-none z-10">
                   <Confetti 
@@ -173,19 +172,19 @@ const handleHireMe = () => {
           </div>
 
           {/* Right Side */}
-          <div className="flex justify-center lg:justify-end">
+          <div className="flex justify-center lg:justify-end mt-12 md:mt-16 lg:mt-0">
             <div className="relative rounded-full">
               <BorderBeam 
-                size={400} 
+                size={300} 
                 duration={20} 
                 colorFrom="#4F46E5" 
                 colorTo="#8B5CF6" 
-                className="opacity-70"
+                className="opacity-70 hidden sm:block"
               />
               <img 
                 src={img}
                 alt="Rahul Kumar" 
-                className="w-80 h-80 lg:w-96 lg:h-96 rounded-full object-cover shadow-2xl"
+                className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-96 lg:h-96 rounded-full object-cover shadow-2xl"
               />
             </div>
           </div>

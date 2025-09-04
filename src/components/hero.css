@@ -37,6 +37,14 @@
 .social-links-container {
   display: flex;
   gap: 12px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+  .social-links-container {
+    justify-content: center;
+    gap: 10px;
+  }
 }
 
 .social-btn {

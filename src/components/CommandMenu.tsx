@@ -48,6 +48,8 @@ export function CommandMenu({ sections, scrollTo, isOpen, setIsOpen }: CommandMe
         return <User className="mr-2 h-4 w-4" />;
       case 'skills':
         return <Code className="mr-2 h-4 w-4" />;
+      case 'github-contributions':
+        return <Github className="mr-2 h-4 w-4" />;
       case 'experience':
         return <Award className="mr-2 h-4 w-4" />;
       case 'projects':
