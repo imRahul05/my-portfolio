@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from '../components/Header';
-import Connections from '../components/Connections';
-import CommandMenu from '../components/CommandMenu';
+import Header from '../components/navbar/Header';
+import Connections from '../components/common/Connections';
+import CommandMenu from '../components/common/CommandMenu';
 import { navigationSections, scrollToSection } from '../utils/navigation';
 
 interface LayoutProps {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Award, Target, Code } from 'lucide-react';
-import { HandWrittenTitle } from './ui/hand-writing-text';
-import './about.css';
+import { HandWrittenTitle } from '../ui/hand-writing-text';
+import './styles/about.css';
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 const About = () => {
   return (

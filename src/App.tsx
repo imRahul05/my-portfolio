@@ -1,5 +1,5 @@
-import Hero from "./components/Hero";
-import TerminalLoader from "./components/Loader";
+import Hero from "./components/hero/Hero";
+import TerminalLoader from "./components/loader/Loader";
 import SectionLoader from "./components/SectionLoader";
 import LazySection from "./components/LazySection";
 import Layout from "./Layout/Layout";
@@ -36,44 +36,44 @@ function App() {
 
       <LazySection
         id="about"
-        importFn={() => import("./components/About")}
+        importFn={() => import("./components/about/About")}
         fallback={<SectionLoader message="Loading About..." />}
       />
       <LazySection
         id="skills"
-        importFn={() => import("./components/Skills")}
+        importFn={() => import("./components/skills/Skills")}
         fallback={<SectionLoader message="Loading Skills..." />}
       />
       <LazySection
         id="github-contributions"
-        importFn={() => import("./components/GitHubCalendar")}
+        importFn={() => import("./components/skills/GitHubCalendar")}
         fallback={<SectionLoader message="Loading Contributions..." />}
       />
       <LazySection
         id="experience"
-        importFn={() => import("./components/Experience")}
+        importFn={() => import("./components/Experience/Experience")}
         fallback={<SectionLoader message="Loading Experience..." />}
       />
       <LazySection
         id="projects"
-        importFn={() => import("./components/Projects")}
+        importFn={() => import("./components/project/Projects")}
         fallback={<SectionLoader message="Loading Projects..." />}
       />
       <LazySection
         id="education"
-        importFn={() => import("./components/Education")}
+        importFn={() => import("./components/education/Education")}
         fallback={<SectionLoader message="Loading Education..." />}
       />
       <LazySection
         id="contact"
-        importFn={() => import("./components/Contact")}
+        importFn={() => import("./components/contact/Contact")}
         fallback={<SectionLoader message="Loading Contact..." />}
       />
 
       <div className="chatbot-widget">
         <LazySection 
           id='chatbot'
-          importFn={() => import("./components/ChatbotWidget")} 
+          importFn={() => import("./components/common/ChatbotWidget")} 
           fallback={<SectionLoader message="Loading Chatbot..." />} 
         />
       </div>

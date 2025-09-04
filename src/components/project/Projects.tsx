@@ -1,11 +1,11 @@
 
 import { useState } from 'react';
 import { TooltipProvider } from '@/components/ui/tooltip';
-import { FlickeringGrid } from './ui/flickering-grid';
-import ProjectCard from './project/ProjectCard';
-import ProjectModal from './project/ProjectModal';
+import { FlickeringGrid } from '../ui/flickering-grid';
+import ProjectCard from './components/ProjectCard';
+import ProjectModal from './components/ProjectModal';
 import { projects, ProjectType } from '@/data/projectData';
-import '../components/project/projects.css';
+import './styles/projects.css';
 
 const Projects = () => {
   // State for the project preview modal

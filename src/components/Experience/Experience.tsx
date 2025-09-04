@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { X } from 'lucide-react';
-import sihCertificate from '../assets/certificates/SIH_CERRIFICATE.png';
-import { BackgroundPaths } from './ui/background-paths';
-import Modal from './ui/Modal';
-import './experience.css';
+import sihCertificate from '../../assets/certificates/SIH_CERRIFICATE.png';
+import { BackgroundPaths } from '../ui/background-paths';
+import Modal from '../ui/Modal';
+import './styles/experience.css';
 
 const Experience = () => {
   const [selectedCertificate, setSelectedCertificate] = useState<string | null>(null);
