@@ -25,7 +25,7 @@ export const projects: ProjectType[] = [
     id: "finsage",
     name: "FinSage AI",
     description: "A better way to manage your finances. Take control of your financial journey with our comprehensive suite of tools.",
-    technologies: ["React", "Web", "JSX"],
+    technologies: ["React", "Web", "JS","FireBase"],
     github: "https://github.com/imRahul05/Fin_service",
     url: "https://finsage-ai.vercel.app/",
     image: FinSageImg,
