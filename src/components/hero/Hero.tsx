@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { MapPin, Mail, Download, ExternalLink, Github, Linkedin, Loader2 } from 'lucide-react';
 import { FaXTwitter } from "react-icons/fa6";
-import img from '../../assets/img1.png';
+import img from '../../assets/img1.gif';
 import { RetroGrid } from '../ui/retro-grid';
 import { AnimatedText } from '../ui/animated-underline-text-one';
 import { BorderBeam } from '../ui/border-beam';
