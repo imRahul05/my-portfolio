@@ -2,6 +2,7 @@ import FinSageImg from '../assets/Projects/FinSage.png';
 import pillpalImg from '../assets/Projects/pillpal.png';
 import crmsImg from '../assets/Projects/crms.png';
 import omsImg from '../assets/Projects/oms.png';
+import mnsIMG from '../assets/Projects/mns.png'
 import FriendLoopImg from '../assets/Projects/FriendLoop.png';
 import bloggyImg from '../assets/Projects/bloggy.png';
 import communityGifImg from '../assets/Projects/community.gif';
@@ -30,7 +31,18 @@ export const projects: ProjectType[] = [
     image: FinSageImg,
     video: 'https://res.cloudinary.com/divkfbddw/video/upload/v1756879926/Screen_Recording_2025-09-03_at_11.40.15_AM_qxxhxn.mov',
     category: "Web"
-  },
+  },{
+      id:"MNS",
+      name: "School Management System",
+      description: "A comprehensive school management system and website designed to serve various stakeholders including students, parents, teachers, and administrators. The application includes both public-facing pages and authenticated portals for different user types.",
+      technologies: ["MERN"],
+    //   github: "https://github.com/imRahul05/mansarovar_public_school",
+      url: "https://mansarovar-public-school-green.vercel.app/",
+      // stars: 2,
+      image: mnsIMG,
+      video:"https://res.cloudinary.com/divkfbddw/video/upload/v1756874792/Screen_Recording_2025-08-06_at_12.28.02_PM_j0yhhi.mov",
+      category: "Education"
+    },
   {
     id: "pillpal",
     name: "PillPal AI",

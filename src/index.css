@@ -92,6 +92,7 @@
   .theme {
     --animate-grid: grid 15s linear infinite;
     --animate-border-beam: border-beam calc(var(--duration)*1s) infinite linear;
+    --animate-pulse: pulse var(--duration) ease-out infinite;
   }
 }
 
@@ -115,11 +116,11 @@
     min-height: 100vh;
     background-color: white; /* Light mode background */
   }
-  
+
   body.dark {
     background-color: black; /* Dark mode background */
   }
-  
+
   #root {
     min-height: 100vh;
     display: flex;
@@ -139,6 +140,14 @@
   @keyframes border-beam {
   100% {
     offset-distance: 100%;
+    }
+  }
+  @keyframes pulse {
+  0%, 100% {
+    boxShadow: 0 0 0 0 var(--pulse-color);
+    }
+  50% {
+    boxShadow: 0 0 0 8px var(--pulse-color);
     }
   }
 }
