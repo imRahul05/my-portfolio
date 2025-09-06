@@ -11,10 +11,6 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
-/**
- * Main layout component that wraps the application content
- * Handles common elements like header, command menu, and social connections
- */
 const Layout: React.FC<LayoutProps> = ({ 
   activeSection, 
   isCommandMenuOpen, 
