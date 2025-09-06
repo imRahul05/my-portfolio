@@ -2,7 +2,8 @@ import React from "react";
 import { Github, ExternalLink, Code, Eye } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { ProjectType } from "@/data/projectData";
-import { useImageLoader } from "@/hooks/useImageLoader"; // 👈 import custom hook
+import { Skeleton } from "@/components/ui/skeleton";
+import { useImageLoader } from "@/hooks/useImageLoader";
 
 interface ProjectCardProps {
   project: ProjectType;
@@ -15,29 +16,21 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onPreviewClick }) =>
   return (
     <div className="project-card rounded-xl shadow-sm overflow-hidden group">
       <div className="relative overflow-hidden h-48">
-        {/* Loader */}
-        {isLoading && !isError && (
-          <div className="w-full h-full flex items-center justify-center bg-gray-100 animate-pulse">
-            <span className="text-gray-500 text-sm">Loading...</span>
-          </div>
-        )}
-
-        {/* Error fallback */}
-        {isError && (
-          <div className="w-full h-full flex items-center justify-center bg-gray-200">
-            <span className="text-gray-400 text-sm">Image not available</span>
-          </div>
+        {/* Loader and Error State */}
+        {(isLoading || isError) && (
+          <Skeleton className="w-full h-full absolute top-0 left-0" />
         )}
 
         {/* Actual image */}
         <img
           src={project.image}
           alt={project.name}
-          className={`w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 ${
-            isLoading || isError ? "hidden" : "block"
+          className={`w-full h-full object-cover transition-opacity duration-300 ${
+            isLoading || isError ? "opacity-0" : "opacity-100"
           }`}
           onLoad={handleLoad}
           onError={handleError}
+          style={{ position: "absolute", top: 0, left: 0 }}
         />
 
         {project.video && (

@@ -1,16 +1,19 @@
 import { useState } from 'react';
 import { MapPin, Mail, Download, ExternalLink, Github, Linkedin, Loader2 } from 'lucide-react';
 import { FaXTwitter } from "react-icons/fa6";
+import { Skeleton } from '@/components/ui/skeleton';
 import img from '../../assets/img1.gif';
 import { RetroGrid } from '../ui/retro-grid';
 import { AnimatedText } from '../ui/animated-underline-text-one';
 import { BorderBeam } from '../ui/border-beam';
 import { Confetti } from '../magicui/confetti';
+import { useImageLoader } from '../../hooks/useImageLoader'; // Adjust path as needed
 import './styles/hero.css';
- 
+
 const Hero = () => {
   const [isDownloading, setIsDownloading] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
+  const { isLoading, isError, handleLoad, handleError } = useImageLoader();
   
   // Function to handle resume download + open in new tab
   const handleResumeDownload = () => {
@@ -53,7 +56,6 @@ const handleHireMe = () => {
     "_blank"
   );
 };
-
 
   return (
     <section id="home" className="min-h-screen pt-20 pb-12 md:pb-16 lg:pb-0 px-0 flex items-center relative w-full overflow-hidden">
@@ -181,10 +183,31 @@ const handleHireMe = () => {
                 colorTo="#8B5CF6" 
                 className="opacity-70 hidden sm:block"
               />
+              
+              {/* Show skeleton while loading */}
+              {isLoading && (
+                <Skeleton className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-96 lg:h-96 rounded-full" />
+              )}
+              
+              {/* Show error state if image fails to load */}
+              {isError && (
+                <div className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-96 lg:h-96 rounded-full bg-gray-200 shadow-2xl flex items-center justify-center">
+                  <div className="text-center text-gray-500">
+                    <div className="text-4xl mb-2">📷</div>
+                    <div>Image not available</div>
+                  </div>
+                </div>
+              )}
+              
+              {/* Actual image */}
               <img 
                 src={img}
                 alt="Rahul Kumar" 
-                className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-96 lg:h-96 rounded-full object-cover shadow-2xl"
+                className={`w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-96 lg:h-96 rounded-full object-cover shadow-2xl transition-opacity duration-300 ${
+                  isLoading ? 'opacity-0 absolute top-0 left-0' : 'opacity-100'
+                }`}
+                onLoad={handleLoad}
+                onError={handleError}
               />
             </div>
           </div>

@@ -147,6 +147,7 @@ const GitHubContributions: React.FC = () => {
                       </p>
                     </div>
                     <button
+                      title='Close color palette'
                       onClick={() => setColorPaletteOpen(false)}
                       className="text-gray-400 hover:text-gray-600 p-2 hover:bg-gray-100 rounded-lg transition-colors"
                     >
@@ -234,6 +235,7 @@ const GitHubContributions: React.FC = () => {
                           <div key={index} className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
                             <div className="relative">
                               <input
+                                title='Select color'
                                 type="color"
                                 value={color}
                                 onChange={(e) => updateCustomColor(index, e.target.value)}
