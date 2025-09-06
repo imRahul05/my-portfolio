@@ -4,16 +4,18 @@ import {
   Linkedin,
   Instagram,
   Youtube,
-  ExternalLink,
   Mail,
   MapPin,
   Code,
 } from "lucide-react";
 import { FaXTwitter } from "react-icons/fa6";
 import spectralBg from "../../assets/Spectral.jpg";
-
+import { Skeleton } from "@/components/ui/skeleton";
+import { useImageLoader } from "@/hooks/useImageLoader";
 
 const Contact = () => {
+  const { isLoading, isError, handleLoad, handleError } = useImageLoader();
+
   const socialLinks = [
     { name: "GitHub", url: "https://github.com/imRahul05", icon: Github },
     { name: "LinkedIn", url: "https://linkedin.com/in/imrahul05", icon: Linkedin },
@@ -31,17 +33,28 @@ const Contact = () => {
   ];
 
   return (
-    <section 
-  id="contact" 
-  className="py-16 text-white relative rounded-tl-[10rem] rounded-tr-[10rem] overflow-hidden"
-  style={{
-    backgroundImage: `url(${spectralBg})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-  }}
->
+    <section
+      id="contact"
+      className="py-16 text-white relative rounded-tl-[10rem] rounded-tr-[10rem] overflow-hidden"
+    >
+      {/* Background image with loader */}
+      <div className="absolute inset-0 -z-10">
+        {(isLoading || isError) && (
+          <Skeleton className="w-full h-full rounded-tl-[10rem] rounded-tr-[10rem]" />
+        )}
+        <img
+          src={spectralBg}
+          alt="Background"
+          onLoad={handleLoad}
+          onError={handleError}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 rounded-tl-[10rem] rounded-tr-[10rem] ${
+            isLoading || isError ? "opacity-0" : "opacity-100"
+          }`}
+        />
+      </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Content */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold">Let’s Connect</h2>
           <p className="text-gray-400 mt-2">
@@ -95,28 +108,6 @@ const Contact = () => {
                 })}
               </div>
             </div>
-
-            {/* Professional Icons */}
-            {/* <div className="mt-6">
-              <h4 className="text-lg font-semibold mb-3">Professional</h4>
-              <div className="flex gap-4 flex-wrap">
-                {professionalLinks.map((link) => {
-                  const Icon = link.icon;
-                  return (
-                    <a
-                      key={link.name}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition"
-                      title={link.name}
-                    >
-                      <Icon size={20} />
-                    </a>
-                  );
-                })}
-              </div>
-            </div> */}
           </div>
 
           {/* Contact Form */}
