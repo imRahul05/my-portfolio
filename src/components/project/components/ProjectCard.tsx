@@ -1,7 +1,8 @@
-import React from 'react';
-import { Github, ExternalLink, Code, Eye } from 'lucide-react';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import { ProjectType } from '@/data/projectData';
+import React from "react";
+import { Github, ExternalLink, Code, Eye } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { ProjectType } from "@/data/projectData";
+import { useImageLoader } from "@/hooks/useImageLoader"; // 👈 import custom hook
 
 interface ProjectCardProps {
   project: ProjectType;
@@ -9,14 +10,36 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, onPreviewClick }) => {
+  const { isLoading, isError, handleLoad, handleError } = useImageLoader();
+
   return (
     <div className="project-card rounded-xl shadow-sm overflow-hidden group">
       <div className="relative overflow-hidden h-48">
+        {/* Loader */}
+        {isLoading && !isError && (
+          <div className="w-full h-full flex items-center justify-center bg-gray-100 animate-pulse">
+            <span className="text-gray-500 text-sm">Loading...</span>
+          </div>
+        )}
+
+        {/* Error fallback */}
+        {isError && (
+          <div className="w-full h-full flex items-center justify-center bg-gray-200">
+            <span className="text-gray-400 text-sm">Image not available</span>
+          </div>
+        )}
+
+        {/* Actual image */}
         <img
           src={project.image}
           alt={project.name}
-          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          className={`w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 ${
+            isLoading || isError ? "hidden" : "block"
+          }`}
+          onLoad={handleLoad}
+          onError={handleError}
         />
+
         {project.video && (
           <video
             src={project.video}
@@ -27,6 +50,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onPreviewClick }) =>
             className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500"
           />
         )}
+
         <div className="absolute top-4 right-4">
           <span className="category-badge px-3 py-1 rounded-full text-xs font-medium text-gray-700 bg-white/80">
             {project.category}
@@ -34,6 +58,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onPreviewClick }) =>
         </div>
       </div>
 
+      {/* Card Content */}
       <div className="p-6">
         <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-200">
           {project.name}
@@ -73,10 +98,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onPreviewClick }) =>
               </Tooltip>
             )}
 
-            {/* Separator */}
-            {project.github && project.url && (
-              <span className="text-gray-300">|</span>
-            )}
+            {project.github && project.url && <span className="text-gray-300">|</span>}
 
             {project.url && (
               <>
@@ -96,10 +118,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onPreviewClick }) =>
                   </TooltipContent>
                 </Tooltip>
 
-                {/* Separator */}
                 <span className="text-gray-300 md:inline hidden">|</span>
 
-                {/* Hide Live Preview button on mobile */}
                 <div className="hidden md:block">
                   <Tooltip>
                     <TooltipTrigger asChild>
