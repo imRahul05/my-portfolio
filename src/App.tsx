@@ -12,12 +12,10 @@ import "./styles/loader.css";
 
 
 function App() {
-  // Custom hooks for cleaner code organization
   const loading = useInitialLoading();
   const activeSection = useActiveSection(sectionIds);
   const { isCommandMenuOpen, setIsCommandMenuOpen } = useCommandMenu();
   
-  // Prevent horizontal overscroll on mobile
   usePreventHorizontalScroll();
 
   // Show loading screen initially
