@@ -5,21 +5,18 @@ export default function TerminalLoader() {
   const [currentText, setCurrentText] = useState('')
   const [showCursor, setShowCursor] = useState(true)
 
-const steps = [
-  { text: 'npm run dev', delay: 30 },      // keep a little slower for effect
-  { text: '', delay: 50 },                // small pause after hitting enter
-  { text: '> my-portfolio@1.0.0 dev', delay: 10 }, 
-  { text: '> vite', delay: 10 },
-  { text: '', delay: 50 }, 
-  { text: 'Local:   http://localhost:5173/', delay: 15 },
-  // { text: 'Network: use --host to expose', delay: 15 },
-]
-
-
+  const steps = [
+    { text: 'npm run dev', delay: 30 },
+    { text: '', delay: 50 },
+    { text: '> my-portfolio@1.0.0 dev', delay: 10 },
+    { text: '> vite', delay: 10 },
+    { text: '', delay: 50 },
+    { text: 'Local:   http://localhost:5173/', delay: 15 },
+    // { text: 'Network: use --host to expose', delay: 15 },
+  ]
 
   useEffect(() => {
     if (currentStep >= steps.length) {
-      // Start blinking cursor
       const cursorInterval = setInterval(() => {
         setShowCursor(prev => !prev)
       }, 500)
@@ -35,7 +32,6 @@ const steps = [
         charIndex++
         setTimeout(typeText, step.delay)
       } else {
-        // Move to next step after a brief pause
         setTimeout(() => {
           setCurrentStep(prev => prev + 1)
           setCurrentText('')
@@ -59,8 +55,17 @@ const steps = [
       
       {/* Terminal container */}
       <div className="relative z-10 flex items-center justify-center min-h-screen p-8">
-        <div className="bg-white/80 backdrop-blur-sm rounded-lg border border-gray-200 shadow-lg p-8 max-w-2xl w-full">
-          <div className="font-mono text-gray-800 space-y-2">
+        <div className="bg-white/80 backdrop-blur-sm rounded-lg border border-gray-200 shadow-lg max-w-2xl w-full">
+          
+          {/* Terminal header (macOS style) */}
+          <div className="flex items-center space-x-2 px-4 py-2 border-b border-gray-200 bg-gray-100 rounded-t-lg">
+            <span className="w-3 h-3 rounded-full bg-red-500"></span>
+            <span className="w-3 h-3 rounded-full bg-yellow-400"></span>
+            <span className="w-3 h-3 rounded-full bg-green-500"></span>
+          </div>
+
+          {/* Terminal body */}
+          <div className="p-6 font-mono text-gray-800 space-y-2">
             {/* Command prompt */}
             {currentStep >= 0 && (
               <div className="flex items-center">
