@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import Hero from "./components/hero/Hero";
 import TerminalLoader from "./components/loader/Loader";
 import SectionLoader from "./components/SectionLoader";
@@ -8,15 +9,27 @@ import { usePreventHorizontalScroll } from "./hooks/usePreventHorizontalScroll";
 import { useActiveSection } from "./hooks/useActiveSection";
 import { useCommandMenu } from "./hooks/useCommandMenu";
 import { sectionIds } from "./utils/navigation";
+import { useMusic } from "@/hooks/useMusic";
 import "./styles/loader.css";
 
 
 function App() {
+  const [musicStarted, setMusicStarted] = useState(false);
+  const { play, pause,unmuteAndPlay } = useMusic("/sounds/cornfield_chase.mp3", { loop: true });
   const loading = useInitialLoading();
   const activeSection = useActiveSection(sectionIds);
   const { isCommandMenuOpen, setIsCommandMenuOpen } = useCommandMenu();
   
   usePreventHorizontalScroll();
+
+useEffect(() => {
+  const handleScroll = () => {
+    unmuteAndPlay(); // unmute + actually play
+    window.removeEventListener("scroll", handleScroll); // run once
+  };
+  window.addEventListener("scroll", handleScroll, { passive: true });
+  return () => window.removeEventListener("scroll", handleScroll);
+}, [unmuteAndPlay]);
 
   // Show loading screen initially
   if (loading) return <TerminalLoader />;
