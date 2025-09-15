@@ -54,7 +54,7 @@ const About = () => {
             </div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">Hackathon Winner</h3>
             <p className="text-gray-600">
-              Recognized as a <span className="font-medium text-gray-900">Smart India Hackathon 2023 Winner</span> 
+              Recognized as a <span className="font-medium text-gray-900">Smart India Hackathon 2023 Winner </span> 
               for delivering innovative, real-world solutions.
             </p>
           </div>
