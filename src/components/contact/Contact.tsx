@@ -9,8 +9,10 @@ import {
   Code,
 } from "lucide-react";
 import { FaXTwitter } from "react-icons/fa6";
-import spectralBg from "../../assets/Spectral.jpg";
+import spectralBg from "../../assets/gg.jpg";
 import { Skeleton } from "@/components/ui/skeleton";
+
+import "./styles/glassmorphic-card.css";
 import { useImageLoader } from "@/hooks/useImageLoader";
 
 const Contact = () => {
@@ -57,14 +59,14 @@ const Contact = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold">Let’s Connect</h2>
-          <p className="text-gray-400 mt-2">
+          <p className="mt-2 text-white bg-black">
             Reach out for opportunities, collaborations, or just to say hi 👋
           </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Info + Social */}
-          <div className="bg-gray-900/70 p-6 rounded-lg backdrop-blur-sm border border-gray-800">
+          <div className="p-6 rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur-lg glassmorphic-card">
             <h3 className="text-xl font-semibold mb-4">Contact Info</h3>
             <div className="space-y-4">
               <div className="flex items-center gap-3">
@@ -111,7 +113,7 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-gray-900/70 p-6 rounded-lg backdrop-blur-sm border border-gray-800">
+          <div className="p-6 rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur-lg glassmorphic-card">
             <h3 className="text-xl font-semibold mb-4">Send Me a Message</h3>
             <form
               action="https://formspree.io/f/xanbggor"
