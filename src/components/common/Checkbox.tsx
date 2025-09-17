@@ -1,11 +1,10 @@
-import React from 'react';
 import styled from 'styled-components';
 
 const Checkbox = () => {
   return (
     <StyledWrapper>
       <label className="burger" htmlFor="burger">
-        <input type="checkbox" id="burger" />
+        <input type="checkbox" id="burger" placeholder="d" />
         <span />
         <span />
         <span />
@@ -33,6 +32,7 @@ const StyledWrapper = styled.div`
     position: absolute;
     height: 4px;
     width: 100%;
+
     background: black;
     border-radius: 9px;
     opacity: 1;
