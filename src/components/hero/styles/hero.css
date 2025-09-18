@@ -93,6 +93,68 @@
   overflow: visible;
 }
 
+/* Disable hover effects on mobile and tablet devices */
+@media (max-width: 1023px) {
+  .social-btn:hover {
+    width: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+  }
+
+  .social-btn:hover span {
+    width: 0px;
+    margin-left: 0px;
+    overflow: hidden;
+  }
+  
+  /* Keep original colors for mobile hover states */
+  #github-hero:hover {
+    background: rgba(51, 51, 51, 0.9);
+    border: none;
+    color: white;
+  }
+
+  #github-hero:hover svg {
+    color: white;
+  }
+
+  #linkedin-hero:hover {
+    background: rgba(14, 118, 168, 0.9);
+    border: none;
+    color: white;
+  }
+
+  #linkedin-hero:hover svg {
+    color: white;
+  }
+
+  #twitter-hero:hover {
+    background: rgba(29, 161, 242, 0.9);
+    border: none;
+    color: white;
+  }
+
+  #twitter-hero:hover svg {
+    color: white;
+  }
+}
+
+/* Desktop-only hover effects (1024px and above) */
+@media (min-width: 1024px) {
+  .social-btn:hover {
+    width: 140px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  .social-btn:hover span {
+    padding: 2px;
+    width: 80px;
+    margin-left: 10px;
+    overflow: visible;
+  }
+}
+
 #github-hero {
   background: rgba(51, 51, 51, 0.9);
   color: white;

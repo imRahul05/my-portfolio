@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Github,
   Linkedin,
@@ -7,6 +7,8 @@ import {
   Mail,
   MapPin,
   Code,
+  Copy,
+  Check,
 } from "lucide-react";
 import { FaXTwitter } from "react-icons/fa6";
 import spectralBg from "../../assets/gg.jpg";
@@ -17,6 +19,17 @@ import { useImageLoader } from "@/hooks/useImageLoader";
 
 const Contact = () => {
   const { isLoading, isError, handleLoad, handleError } = useImageLoader();
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText("imrahul2516@gmail.com");
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy email: ", err);
+    }
+  };
 
   const socialLinks = [
     { name: "GitHub", url: "https://github.com/imRahul05", icon: Github },
@@ -69,14 +82,25 @@ const Contact = () => {
           <div className="p-6 rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur-lg glassmorphic-card">
             <h3 className="text-xl font-semibold mb-4">Contact Info</h3>
             <div className="space-y-4">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 group">
                 <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
                   <Mail size={18} />
                 </div>
-                <div>
+                <div className="flex-1">
                   <p className="text-sm text-gray-400">Email</p>
                   <p className="text-lg">imrahul2516@gmail.com</p>
                 </div>
+                <button
+                  onClick={copyEmail}
+                  className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 p-2 rounded-lg hover:bg-white/10"
+                  title="Copy email"
+                >
+                  {emailCopied ? (
+                    <Check size={16} className="text-green-400" />
+                  ) : (
+                    <Copy size={16} className="text-gray-400 hover:text-white" />
+                  )}
+                </button>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-teal-600 rounded-lg flex items-center justify-center">
@@ -95,13 +119,30 @@ const Contact = () => {
               <div className="flex gap-4">
                 {socialLinks.map((link) => {
                   const Icon = link.icon;
+                  const getHoverClasses = (name: string) => {
+                    switch (name) {
+                      case "GitHub":
+                        return "hover:bg-gray-900 hover:text-white";
+                      case "LinkedIn":
+                        return "hover:bg-blue-600 hover:text-white";
+                      case "Twitter":
+                        return "hover:bg-black hover:text-white";
+                      case "Instagram":
+                        return "hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 hover:text-white";
+                      case "YouTube":
+                        return "hover:bg-red-600 hover:text-white";
+                      default:
+                        return "hover:bg-gray-700";
+                    }
+                  };
+                  
                   return (
                     <a
                       key={link.name}
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition"
+                      className={`p-2 rounded-full bg-gray-800 transition-all duration-300 transform hover:scale-110 ${getHoverClasses(link.name)}`}
                       title={link.name}
                     >
                       <Icon size={20} />
