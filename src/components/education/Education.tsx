@@ -56,7 +56,7 @@ const Education = () => {
                           <LinkPreview
                             url="https://masaischool.com"
                             isStatic={true}
-                            imageSrc={masai}
+                            imageSrc='https://i.ibb.co/TMXRYFXj/Screenshot-2025-09-21-at-12-35-41-AM.png'
                             className="text-lg text-blue-600 font-medium mb-2 hover:text-blue-700 transition-colors"
                           >
                             Masai School
@@ -135,7 +135,7 @@ const Education = () => {
                           <LinkPreview
                             url="https://vtu.ac.in"
                             isStatic={true}
-                            imageSrc={vtu}
+                            imageSrc='https://i.ibb.co/ds3cBHfB/Screenshot-2025-09-21-at-12-34-39-AM.png'
                             className="text-lg text-blue-600 font-medium mb-4 hover:text-blue-700 transition-colors"
                           >
                             Visvesvaraya Technological University (VTU)
