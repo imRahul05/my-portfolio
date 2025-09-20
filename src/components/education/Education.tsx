@@ -1,10 +1,10 @@
 "use client"
 
 import { useState } from "react"
-import {  FlipHorizontal } from "lucide-react"
-import { LinkPreview } from "../ui/link-preview"
+import { FlipHorizontal } from "lucide-react"
 import masai from "../../assets/masai.png"
 import vtu from "../../assets/vtu.png"
+import { LinkPreview } from "../ui/link-preview"
 const Education = () => {
   const [flippedCard1, setFlippedCard1] = useState(false)
   const [flippedCard2, setFlippedCard2] = useState(false)
@@ -54,12 +54,12 @@ const Education = () => {
                         <div className="flex-1">
                           <h3 className="text-2xl font-bold text-gray-900 mb-2">Full Stack Web Development</h3>
                           <LinkPreview
-                            url="https://www.masaischool.com/"
+                            url="https://masaischool.com"
                             isStatic={true}
-                            imageSrc="https://i.ibb.co/TMXRYFXj/Screenshot-2025-09-21-at-12-35-41-AM.png"
-                            className="text-lg text-blue-600 font-medium mb-2 hover:text-blue-700 transition-colors cursor-pointer"
+                            imageSrc={masai}
+                            className="text-lg text-blue-600 font-medium mb-2 hover:text-blue-700 transition-colors"
                           >
-                            <p className="text-lg text-blue-600 font-medium mb-2">Masai School</p>
+                            Masai School
                           </LinkPreview>
                           <p className="text-gray-600 mb-4">December 2024 - Present</p>
                           <div className="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
@@ -133,14 +133,12 @@ const Education = () => {
                         <div className="flex-1">
                           <h3 className="text-2xl font-bold text-gray-900 mb-2">Master of Computer Applications (MCA)</h3>
                           <LinkPreview
-                            url="https://vtu.ac.in/"
+                            url="https://vtu.ac.in"
                             isStatic={true}
-                            imageSrc="https://i.ibb.co/ds3cBHfB/Screenshot-2025-09-21-at-12-34-39-AM.png"
-                            className="text-lg text-blue-600 font-medium mb-4 hover:text-blue-700 transition-colors cursor-pointer"
+                            imageSrc={vtu}
+                            className="text-lg text-blue-600 font-medium mb-4 hover:text-blue-700 transition-colors"
                           >
-                            <p className="text-lg text-blue-600 font-medium mb-4">
-                              Visvesvaraya Technological University (VTU)
-                            </p>
+                            Visvesvaraya Technological University (VTU)
                           </LinkPreview>
                           <p className="text-gray-600 mb-4">Acharya Institute of Technology (AIT)</p>
                           <div className="inline-flex items-center px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">

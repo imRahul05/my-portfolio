@@ -1,6 +1,5 @@
 "use client";
 import * as HoverCardPrimitive from "@radix-ui/react-hover-card";
-import Image from "next/image";
 import { encode } from "qss";
 import React from "react";
 import {
@@ -9,8 +8,11 @@ import {
   useMotionValue,
   useSpring,
 } from "framer-motion";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
+
+// Simple utility function for className concatenation
+const cn = (...classes: (string | undefined | null | false)[]) => {
+  return classes.filter(Boolean).join(' ');
+};
 
 type LinkPreviewProps = {
   children: React.ReactNode;
@@ -18,8 +20,6 @@ type LinkPreviewProps = {
   className?: string;
   width?: number;
   height?: number;
-  quality?: number;
-  layout?: string;
 } & (
   | { isStatic: true; imageSrc: string }
   | { isStatic?: false; imageSrc?: never }
@@ -31,8 +31,6 @@ export const LinkPreview = ({
   className,
   width = 200,
   height = 125,
-  quality = 50,
-  layout = "fixed",
   isStatic = false,
   imageSrc = "",
 }: LinkPreviewProps) => {
@@ -78,14 +76,12 @@ export const LinkPreview = ({
     <>
       {isMounted ? (
         <div className="hidden">
-          <Image
+          <img
             src={src}
             width={width}
             height={height}
-            quality={quality}
-            layout={layout}
-            priority={true}
             alt="hidden image"
+            loading="eager"
           />
         </div>
       ) : null}
@@ -131,22 +127,22 @@ export const LinkPreview = ({
                   x: translateX,
                 }}
               >
-                <Link
+                <a
                   href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block p-1 bg-white border-2 border-transparent shadow rounded-xl hover:border-neutral-200 dark:hover:border-neutral-800"
                   style={{ fontSize: 0 }}
                 >
-                  <Image
+                  <img
                     src={isStatic ? imageSrc : src}
                     width={width}
                     height={height}
-                    quality={quality}
-                    layout={layout}
-                    priority={true}
                     className="rounded-lg"
                     alt="preview image"
+                    loading="lazy"
                   />
-                </Link>
+                </a>
               </motion.div>
             )}
           </AnimatePresence>
