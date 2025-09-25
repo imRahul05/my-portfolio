@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../components/navbar/Header';
+import ResponsiveNavigation from '../components/navbar/ResponsiveNavigation';
 import Connections from '../components/common/Connections';
 import CommandMenu from '../components/common/CommandMenu';
 import { navigationSections, scrollToSection } from '../utils/navigation';
@@ -27,8 +27,8 @@ const Layout: React.FC<LayoutProps> = ({
         setIsOpen={setIsCommandMenuOpen}
       />
       
-      {/* Header with command menu toggle button */}
-      <Header 
+      {/* Responsive Navigation - Header for mobile/tablet, Dock for desktop */}
+      <ResponsiveNavigation 
         activeSection={activeSection} 
         openCommandMenu={() => setIsCommandMenuOpen(true)}
       />
@@ -36,8 +36,10 @@ const Layout: React.FC<LayoutProps> = ({
       {/* Floating Social Connections */}
       <Connections />
       
-      {/* Main content */}
-      {children}
+      {/* Main content - no padding needed since dock floats on top */}
+      <div>
+        {children}
+      </div>
     </div>
   );
 };
