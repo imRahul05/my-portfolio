@@ -36,7 +36,7 @@ export const projects: ProjectType[] = [
       name: "School Management System",
       description: "A comprehensive school management system and website designed to serve various stakeholders including students, parents, teachers, and administrators. The application includes both public-facing pages and authenticated portals for different user types.",
       technologies: ["MERN"],
-    //   github: "https://github.com/imRahul05/mansarovar_public_school",
+      github: "https://mansarovar-public-school-green.vercel.app/",
       url: "https://mansarovar-public-school-green.vercel.app/",
       // stars: 2,
       image: mnsIMG,
