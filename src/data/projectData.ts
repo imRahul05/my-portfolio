@@ -65,6 +65,16 @@ export const projects: ProjectType[] = [
     category: "Web"
   },
   {
+    id: "billing-and-management-app",
+    name: "Billing and Management App",
+    description: "A web app for managing billing and invoicing with role-based authentication. Users can create, view, and manage invoices.",
+    technologies: ["MERN", "Tailwind" ,"session-based", "JWT"],
+    github: "https://github.com/imRahul05/arjun-swarnkar-jewel",
+    url: "https://arjun-swarnkar-jewel.vercel.app/login",
+    image: 'https://i.ibb.co/WpY3DqtS/Screenshot-2025-10-08-at-10-07-13-AM.png',
+    category: "Business & Finance"
+  },
+  {
     id: "oms",
     name: "OMS - Order Management System",
     description: "A web app for managing orders with role-based authentication. Users can place orders, staff/admins can manage them via dashboards.",
