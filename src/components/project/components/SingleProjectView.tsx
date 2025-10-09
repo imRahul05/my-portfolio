@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Github, ExternalLink, Eye, ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { ProjectType } from "@/data/projectData";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -23,6 +24,49 @@ const SingleProjectView: React.FC<SingleProjectViewProps> = ({
   totalProjects
 }) => {
   const { isLoading, isError, handleLoad, handleError } = useImageLoader();
+
+  // Animation variants for project switching
+  const projectVariants = {
+    hidden: { 
+      opacity: 0, 
+      x: 100,
+      scale: 0.95
+    },
+    visible: { 
+      opacity: 1, 
+      x: 0,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        ease: [0.25, 0.25, 0, 1] as const,
+        staggerChildren: 0.1
+      }
+    },
+    exit: { 
+      opacity: 0, 
+      x: -100,
+      scale: 0.95,
+      transition: {
+        duration: 0.4,
+        ease: [0.4, 0, 1, 1] as const
+      }
+    }
+  };
+
+  const contentVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 20 
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: [0.25, 0.25, 0, 1] as const
+      }
+    }
+  };
 
   // Keyboard navigation
   useEffect(() => {
@@ -62,10 +106,21 @@ const SingleProjectView: React.FC<SingleProjectViewProps> = ({
       </button>
 
       {/* Main Content */}
-      <div className="w-full max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Side - Project Details */}
-          <div className="space-y-6">
+      <AnimatePresence mode="wait">
+        <motion.div 
+          key={project.id}
+          variants={projectVariants}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          className="w-full max-w-7xl mx-auto"
+        >
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Side - Project Details */}
+            <motion.div 
+              variants={contentVariants}
+              className="space-y-6"
+            >
             {/* Category Badge */}
             <div className="inline-block">
               <span className="px-4 py-2 rounded-full text-sm font-medium text-blue-700 bg-blue-50 border border-blue-200">
@@ -162,7 +217,7 @@ const SingleProjectView: React.FC<SingleProjectViewProps> = ({
             <div className="text-sm text-gray-500 pt-4">
               Project {currentIndex + 1} of {totalProjects}
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Side - Project Image/Video */}
           <div className="relative">
@@ -200,7 +255,8 @@ const SingleProjectView: React.FC<SingleProjectViewProps> = ({
             </div>
           </div>
         </div>
-      </div>
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 };

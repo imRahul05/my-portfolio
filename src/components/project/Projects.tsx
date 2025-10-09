@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
 import { Grid3X3, Square } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { FlickeringGrid } from '../ui/flickering-grid';
 import ProjectCard from './components/ProjectCard';
@@ -18,6 +19,51 @@ const Projects = () => {
   
   // State for current project index in single view
   const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
+
+  // Animation variants for view transitions
+  const viewVariants = {
+    hidden: { 
+      opacity: 0, 
+      scale: 0.95,
+      y: 20 
+    },
+    visible: { 
+      opacity: 1, 
+      scale: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: [0.25, 0.25, 0, 1] as const,
+        staggerChildren: 0.1
+      }
+    },
+    exit: { 
+      opacity: 0, 
+      scale: 0.95,
+      y: -20,
+      transition: {
+        duration: 0.3,
+        ease: [0.4, 0, 1, 1] as const
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 30,
+      scale: 0.9 
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.4,
+        ease: [0.25, 0.25, 0, 1] as const
+      }
+    }
+  };
 
   // Handler for opening the preview modal
   const handlePreviewClick = (project: ProjectType) => {
@@ -94,29 +140,51 @@ const Projects = () => {
           </div>
 
           {/* Render Grid View */}
-          {viewMode === 'grid' && (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-              {projects.map((project) => (
-                <ProjectCard
-                  key={project.id}
-                  project={project}
-                  onPreviewClick={handlePreviewClick}
-                />
-              ))}
-            </div>
-          )}
+          <AnimatePresence mode="wait">
+            {viewMode === 'grid' && (
+              <motion.div
+                key="grid-view"
+                variants={viewVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12"
+              >
+                {projects.map((project, index) => (
+                  <motion.div
+                    key={project.id}
+                    variants={cardVariants}
+                    custom={index}
+                  >
+                    <ProjectCard
+                      project={project}
+                      onPreviewClick={handlePreviewClick}
+                    />
+                  </motion.div>
+                ))}
+              </motion.div>
+            )}
 
-          {/* Render Single View */}
-          {viewMode === 'single' && (
-            <SingleProjectView
-              project={projects[currentProjectIndex]}
-              onPreviewClick={handlePreviewClick}
-              onNext={handleNextProject}
-              onPrevious={handlePreviousProject}
-              currentIndex={currentProjectIndex}
-              totalProjects={projects.length}
-            />
-          )}
+            {/* Render Single View */}
+            {viewMode === 'single' && (
+              <motion.div
+                key="single-view"
+                variants={viewVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+              >
+                <SingleProjectView
+                  project={projects[currentProjectIndex]}
+                  onPreviewClick={handlePreviewClick}
+                  onNext={handleNextProject}
+                  onPrevious={handlePreviousProject}
+                  currentIndex={currentProjectIndex}
+                  totalProjects={projects.length}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {/* Project Preview Modal */}
           {previewProject && (
