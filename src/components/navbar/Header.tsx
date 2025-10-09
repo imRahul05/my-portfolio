@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Menu, X, Search, ChevronDown } from 'lucide-react';
+import GoogleTranslateWidget from '../common/GoogleTranslateWidget';
 
 interface HeaderProps {
   activeSection: string;
@@ -128,7 +129,9 @@ const Header: React.FC<HeaderProps> = ({ activeSection, openCommandMenu }) => {
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
+            {/* <GoogleTranslateWidget /> */}
+
             {/* Command menu button - visible on mobile, tablet, and desktop */}
             {openCommandMenu && (
               <button
