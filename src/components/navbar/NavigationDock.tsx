@@ -20,7 +20,7 @@ interface NavigationDockProps {
 }
 
 // ✅ Centralized icon size (change once, applies everywhere)
-const ICON_SIZE = 16;
+const ICON_SIZE = 21;
 
 const NavigationDock: React.FC<NavigationDockProps> = ({
   activeSection,

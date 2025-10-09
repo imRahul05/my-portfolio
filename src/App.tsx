@@ -12,24 +12,15 @@ import { sectionIds } from "./utils/navigation";
 import { useMusic } from "@/hooks/useMusic";
 import "./styles/loader.css";
 
-interface AppProps {
-  navigateToSection?: (sectionId: string, replace?: boolean) => void;
-  currentSection?: string;
-}
 
-function App({ navigateToSection, currentSection }: AppProps) {
+function App() {
   const { unmuteAndPlay } = useMusic("/sounds/cornfield_chase.mp3", { loop: true });
   const loading = useInitialLoading();
-  
-  // Use the current section from router or fallback to useActiveSection
-  const detectedActiveSection = useActiveSection(sectionIds);
-  const activeSection = currentSection || detectedActiveSection;
-  
+  const activeSection = useActiveSection(sectionIds);
   const { isCommandMenuOpen, setIsCommandMenuOpen } = useCommandMenu();
   
   usePreventHorizontalScroll();
 
-  // Enhanced scroll handler that also updates URL
   useEffect(() => {
     const handleScroll = () => {
       unmuteAndPlay(); // unmute + actually play
@@ -38,13 +29,6 @@ function App({ navigateToSection, currentSection }: AppProps) {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [unmuteAndPlay]);
-
-  // Update URL when active section changes (for manual scrolling)
-  useEffect(() => {
-    if (navigateToSection && detectedActiveSection !== currentSection) {
-      navigateToSection(detectedActiveSection, true);
-    }
-  }, [detectedActiveSection, currentSection, navigateToSection]);
 
   // Show loading screen initially
   if (loading) return <TerminalLoader />;
