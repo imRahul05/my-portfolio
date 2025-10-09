@@ -2,8 +2,9 @@
  * Scrolls smoothly to a section on the page
  * @param id - The ID of the section to scroll to
  * @param headerOffset - Optional offset to account for fixed headers (default: 70px)
+ * @param updateURL - Whether to update the URL (default: false, handled by router)
  */
-export const scrollToSection = (id: string, headerOffset: number = 70): void => {
+export const scrollToSection = (id: string, headerOffset: number = 70, updateURL: boolean = false): void => {
   const element = document.getElementById(id);
   if (element) {
     const elementPosition = element.getBoundingClientRect().top;
@@ -14,6 +15,12 @@ export const scrollToSection = (id: string, headerOffset: number = 70): void => 
       top: offsetPosition,
       behavior: 'smooth'
     });
+
+    // Optionally update URL (for legacy support)
+    if (updateURL && typeof window !== 'undefined') {
+      const url = id === 'home' ? '/' : `/?section=${id}`;
+      window.history.pushState({ section: id }, '', url);
+    }
   }
 };
 

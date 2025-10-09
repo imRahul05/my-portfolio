@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Hero from "./components/hero/Hero";
 import TerminalLoader from "./components/loader/Loader";
 import SectionLoader from "./components/SectionLoader";
@@ -12,24 +12,39 @@ import { sectionIds } from "./utils/navigation";
 import { useMusic } from "@/hooks/useMusic";
 import "./styles/loader.css";
 
+interface AppProps {
+  navigateToSection?: (sectionId: string, replace?: boolean) => void;
+  currentSection?: string;
+}
 
-function App() {
-  const [musicStarted, setMusicStarted] = useState(false);
-  const { play, pause,unmuteAndPlay } = useMusic("/sounds/cornfield_chase.mp3", { loop: true });
+function App({ navigateToSection, currentSection }: AppProps) {
+  const { unmuteAndPlay } = useMusic("/sounds/cornfield_chase.mp3", { loop: true });
   const loading = useInitialLoading();
-  const activeSection = useActiveSection(sectionIds);
+  
+  // Use the current section from router or fallback to useActiveSection
+  const detectedActiveSection = useActiveSection(sectionIds);
+  const activeSection = currentSection || detectedActiveSection;
+  
   const { isCommandMenuOpen, setIsCommandMenuOpen } = useCommandMenu();
   
   usePreventHorizontalScroll();
 
-useEffect(() => {
-  const handleScroll = () => {
-    unmuteAndPlay(); // unmute + actually play
-    window.removeEventListener("scroll", handleScroll); // run once
-  };
-  window.addEventListener("scroll", handleScroll, { passive: true });
-  return () => window.removeEventListener("scroll", handleScroll);
-}, [unmuteAndPlay]);
+  // Enhanced scroll handler that also updates URL
+  useEffect(() => {
+    const handleScroll = () => {
+      unmuteAndPlay(); // unmute + actually play
+      window.removeEventListener("scroll", handleScroll); // run once
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [unmuteAndPlay]);
+
+  // Update URL when active section changes (for manual scrolling)
+  useEffect(() => {
+    if (navigateToSection && detectedActiveSection !== currentSection) {
+      navigateToSection(detectedActiveSection, true);
+    }
+  }, [detectedActiveSection, currentSection, navigateToSection]);
 
   // Show loading screen initially
   if (loading) return <TerminalLoader />;
