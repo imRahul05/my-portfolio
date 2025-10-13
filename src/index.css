@@ -110,7 +110,7 @@
     padding: 0;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-mono;
     overscroll-behavior-x: none;
     touch-action: pan-y;
     min-height: 100vh;
