@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Menu, X, Search, ChevronDown } from 'lucide-react';
-import GoogleTranslateWidget from '../common/GoogleTranslateWidget';
 
 interface HeaderProps {
   activeSection: string;
